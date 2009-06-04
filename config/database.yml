@@ -19,7 +19,7 @@ development:
   encoding: utf8
   database: GetRepresented_development
   username: root
-  password: doitbigg
+  password: 
   socket: /var/run/mysqld/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and
@@ -30,7 +30,7 @@ test:
   encoding: utf8
   database: GetRepresented_test
   username: root
-  password: doitbigg
+  password: 
   socket: /var/run/mysqld/mysqld.sock
 
 production:
@@ -38,5 +38,5 @@ production:
   encoding: utf8
   database: GetRepresented_production
   username: root
-  password: doitbigg
+  password: 
   socket: /var/run/mysqld/mysqld.sock
