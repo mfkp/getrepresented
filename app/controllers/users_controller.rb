@@ -4,13 +4,12 @@ class UsersController < ApplicationController
   end
   
   def create
-    @user.save do |result|
-      if result
-        flash[:notice] = "Registration successful!"
-        redirect_back_or_default root_url
-      else
-        render :action => :new
-      end
+    @user = User.new(params[:user])
+    if @user.save
+      flash[:notice] = "Registration Successful."
+      redirect_to root_url
+    else
+      render :action => 'new'
     end
   end
   
