@@ -1,3 +1,4 @@
 mbleigh-subdomain-fu -s http://gems.github.com
 authlogic
 authlogic-oid
+ruby-openid -v >=2.0.4
