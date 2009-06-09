@@ -23,7 +23,9 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   # GET /posts/new.xml
+  
   def new
+    before_filter(:require_user)
     @post = Post.new
 
     respond_to do |format|

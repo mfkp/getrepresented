@@ -11,8 +11,8 @@
   <tr>
     <td><%=h post.title %></td>
     <td><%=h post.body %></td>
-	<% if current_user %>
 	    <td><%= link_to 'Show', post %></td>
+	<% if current_user %>
 	    <td><%= link_to 'Edit', edit_post_path(post) %></td>
 	    <td><%= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete %></td>
 	<% end %>
