@@ -1,10 +1,12 @@
 ActionController::Routing::Routes.draw do |map|
+  #map.resources :comments
+
   map.login "login", :controller => "user_sessions", :action => "new"
   map.logout "logout", :controller => "user_sessions", :action => "destroy"
   
   map.resources :user_sessions
   map.resources :users
-  map.resources :posts
+  map.resources :posts, :has_many=>:comments
   
   map.root :controller => 'posts'
 
@@ -45,6 +47,6 @@ ActionController::Routing::Routes.draw do |map|
   # See how all your routes lay out with "rake routes"
 
   # Install the default routes as the lowest priority.
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+ #map.connect ':controller/:action/:id'
+  #map.connect ':controller/:action/:id.:format'
 end
