@@ -1,4 +1,11 @@
 class PostsController < ApplicationController
+  #before_filter :require_user, :only => [:new, :edit, :create, :update, :destroy]
+  access_control do
+     allow logged_in
+     allow anonymous, :to => [:index, :show]
+  end
+
+  
   # GET /posts
   # GET /posts.xml
   def index
@@ -23,9 +30,7 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   # GET /posts/new.xml
-  
   def new
-    before_filter(:require_user)
     @post = Post.new
 
     respond_to do |format|

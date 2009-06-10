@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
+      current_user.has_role!(:general_users)
       flash[:notice] = "Registration Successful."
       redirect_to root_url
     else
@@ -20,7 +21,7 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update_attributes(params[:user])
-      flash[:notice] = "Successfully updated user."
+      flash[:notice] = "Successfully updated profile."
       redirect_to root_url
     else
       render :action => 'edit'
