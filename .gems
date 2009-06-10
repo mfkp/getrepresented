@@ -1,5 +1,5 @@
 mbleigh-subdomain-fu -s http://gems.github.com
-authlogic -s http://master.mirror.rubyforge.org/authlogic/
-authlogic-oid -s http://master.mirror.rubyforge.org/
-ruby-openid -v >=2.0.4 -s http://master.mirror.rubyforge.org/
+authlogic
+authlogic-oid
+ruby-openid -v >=2.0.4
 be9-acl9 -s http://gems.github.com
