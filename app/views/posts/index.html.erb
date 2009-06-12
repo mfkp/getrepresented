@@ -1,20 +1,28 @@
 <p><%= current_subdomain %></p>
+<% if current_user %>
+	<p>You are logged in as <%= current_user.username %>.</p>
+<% end %>
 <h1>Listing posts</h1>
-
 <table>
   <tr>
     <th>Title</th>
     <th>Body</th>
+	<th>AuthorID</th>
   </tr>
 
 <% @posts.each do |post| %>
   <tr>
     <td><%=h post.title %></td>
     <td><%=h post.body %></td>
-	    <td><%= link_to 'Show', post %></td>
+	<td><%= post.created_by %></td>
+	<td><%= link_to 'Show', post %></td>
 	<% if current_user %>
-	    <td><%= link_to 'Edit', edit_post_path(post) %></td>
-	    <td><%= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete %></td>
+		<% if updatable(post) %>
+	   	 	<td><%= link_to 'Edit', edit_post_path(post) %></td>
+		<% end %>
+		<% if deletable(post) %>
+			<td> <%= link_to 'Delete', post , :confirm => 'Are you sure?', :method => :delete %></td>
+		<% end %>
 	<% end %>
   </tr>
 <% end %>

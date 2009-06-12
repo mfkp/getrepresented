@@ -2,10 +2,27 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-  rescue_from 'Acl9::AccessDenied', :with => :access_denied
+#  include PadlockAuthorization
+#  rescue_from 'Acl9::AccessDenied', :with => :access_denied
   helper :all # include all helpers, all the time
 
   helper_method :current_user_session, :current_user, :logged_in?, :current_user_is_admin?
+  
+#  def access_denied
+#    respond_to do |format|
+#      format.html do
+#        store_location
+#        redirect_to new_user_session_path
+#      end
+#      # format.any doesn't work in rails version < http://dev.rubyonrails.org/changeset/8987
+#      # Add any other API formats here.  Some browsers send Accept: */* and 
+#      # trigger the 'format.any' block incorrectly.
+#      format.any(:json, :xml) do
+#        request_http_basic_authentication 'Web Password'
+#      end
+#    end
+#  end
+
   
   private
   
@@ -20,6 +37,10 @@ class ApplicationController < ActionController::Base
     #@current_user = current_user_session && current_user_session.record
   end
   
+  def logged_in?
+    current_user
+  end
+
   def require_user
     unless current_user
       store_location
@@ -53,6 +74,7 @@ class ApplicationController < ActionController::Base
       redirect_to login_path
     end
   end  
+  
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
   protect_from_forgery # :secret => 'f86fe8528a80847bd838645a74c2dfad'

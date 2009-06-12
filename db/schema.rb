@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090610044209) do
+ActiveRecord::Schema.define(:version => 20090612072112) do
 
   create_table "comments", :force => true do |t|
     t.integer  "post_id"
@@ -59,20 +59,22 @@ ActiveRecord::Schema.define(:version => 20090610044209) do
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "created_by"
+    t.integer "created_by"
   end
 
   create_table "roles", :force => true do |t|
-    t.string   "name",              :limit => 40
-    t.string   "authorizable_type", :limit => 40
+    t.string   "name"
+    t.string   "authorizable_type"
     t.integer  "authorizable_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "roles", ["name"], :name => "index_roles_on_name"
+
   create_table "roles_users", :id => false, :force => true do |t|
-    t.integer  "user_id"
     t.integer  "role_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -98,6 +100,7 @@ ActiveRecord::Schema.define(:version => 20090610044209) do
     t.datetime "updated_at"
     t.string   "openid_identifier"
     t.string   "role"
+    t.boolean  "is_admin",          :default => false
   end
 
   add_index "users", ["openid_identifier"], :name => "index_users_on_openid_identifier"
