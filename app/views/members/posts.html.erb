@@ -1,0 +1,11 @@
+<!--display all of a member's relevant posts-->
+<h4>Constituent Posts</h4>
+<ul>
+    <% @posts.each do |post| %>
+	<% if post.member_id == @member.id %>
+	    <li>
+	        <%= h post.title %>
+	    </li>
+	<% end %>
+    <% end %>
+</ul>

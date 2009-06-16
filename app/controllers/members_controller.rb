@@ -26,4 +26,27 @@ class MembersController < ApplicationController
       render :action => 'edit'
     end
   end
+  
+  # GET /members/1
+  # GET /members/1.xml
+  def show
+  @member = Member.find(params[:id])
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @member }
+    end
+  end
+  
+  # GET /members/1/posts
+  # GET /members/1/posts.xml
+  def posts
+  @member = Member.find(params[:id])
+  @posts = Post.all
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @member }
+    end
+  end
 end
+
+

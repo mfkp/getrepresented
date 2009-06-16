@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090612072112) do
+ActiveRecord::Schema.define(:version => 20090616191737) do
 
   create_table "comments", :force => true do |t|
     t.integer  "post_id"
@@ -26,6 +26,9 @@ ActiveRecord::Schema.define(:version => 20090612072112) do
     t.string   "persistence_token"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.text     "profile"
   end
 
   create_table "open_id_authentication_associations", :force => true do |t|
@@ -59,35 +62,8 @@ ActiveRecord::Schema.define(:version => 20090612072112) do
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer "created_by"
-  end
-
-  create_table "roles", :force => true do |t|
-    t.string   "name"
-    t.string   "authorizable_type"
-    t.integer  "authorizable_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "roles", ["name"], :name => "index_roles_on_name"
-
-  create_table "roles_users", :id => false, :force => true do |t|
-    t.integer  "role_id"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "user_groups", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "user_groups_users", :id => false, :force => true do |t|
-    t.integer "user_group_id"
-    t.integer "user_id"
+    t.integer  "created_by"
+    t.integer  "member_id"
   end
 
   create_table "users", :force => true do |t|

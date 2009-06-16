@@ -1,0 +1,13 @@
+<p>
+    <b>Name:</b>
+    <%=h @member.first_name %> <%=h @member.last_name %>
+</p>
+<p>
+    <b>Email:</b>
+    <%=h @member.email %>
+</p>
+<p>
+    <b>Profile:</b>
+    <%=h @member.profile %>
+</p>
+<%= link_to 'Edit', edit_member_path(@member) %> |<%= link_to 'Back', root_url %>
