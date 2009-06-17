@@ -1,0 +1,36 @@
+<p><%= current_subdomain %></p>
+<% if current_user %>
+	<p>You are logged in as <%= current_user.username %>.</p>
+<% end %>
+<h1>Listing responses</h1>
+<table>
+  <tr>
+    <th>Post ID</th>
+    <th>Response</th>
+	<th>Member ID</th>
+  </tr>
+
+<% @responses.each do |response| %>
+  <tr>
+    <td><%=h response.post_id %></td>
+    <td><%=h response.response %></td>
+	<td><%= response.member_id %></td>
+	<td><%= link_to 'Show', response %></td>
+	<% if current_user %>
+		<% if updatable(response) %>
+	   	 	<td><%= link_to 'Edit', edit_response_path(response) %></td>
+		<% end %>
+		<% if deletable(response) %>
+			<td> <%= link_to 'Delete', response , :confirm => 'Are you sure?', :method => :delete %></td>
+		<% end %>
+	<% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<% if current_user %>
+	<%= link_to 'New response', new_response_path %>
+<% else %>
+	<%= link_to 'New response', login_path %>
+<% end %>

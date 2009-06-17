@@ -5,6 +5,7 @@
 	<% if post.member_id == @member.id %>
 	    <li>
 	        <%= h post.title %>
+			<%= link_to 'Read', post %>
 	    </li>
 	<% end %>
     <% end %>

@@ -4,7 +4,6 @@ class CreateComments < ActiveRecord::Migration
       t.references :post
       t.text :comment
       t.datetime :created_at
-
       t.timestamps
     end
   end

@@ -5,6 +5,7 @@ class Post < ActiveRecord::Base
   belongs_to :user, :foreign_key => 'created_by', :class_name => 'User'
   belongs_to :member
   has_many :comments
+  has_many :responses
   
   validates_presence_of :title, :body
   

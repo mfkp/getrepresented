@@ -1,0 +1,12 @@
+<p>
+    <b>Post ID:</b>
+    <%=h @response.post_id %>
+</p>
+<p>
+    <b>Body:</b>
+    <%=h @response.response %>
+</p>
+<div class = "dateline">
+    Created <%= @response.created_at.strftime("%B %d, %Y at %I:%M %p") %>
+</div><br/>
+<%= link_to 'Edit', edit_response_path(@response) %> |<%= link_to 'Back', responses_path %>

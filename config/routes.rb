@@ -10,10 +10,13 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :user_sessions
   map.resources :users
-  map.resources :members
-  map.resources :posts, :has_many=>:comments
+  map.resources :members, :has_many=>:responses
+  map.resources :member_sessions
+  map.resources :responses
+  map.resources :posts, :has_many=>:comments, :has_many=>:responses #wrong?
   
   map.connect 'members/:id/posts', :controller => 'members', :action => 'posts'
+  map.connect 'responses/new/:id', :controller => 'responses', :action => 'new'
   
   map.root :controller => 'posts'
 

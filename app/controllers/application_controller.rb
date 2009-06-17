@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 #  rescue_from 'Acl9::AccessDenied', :with => :access_denied
   helper :all # include all helpers, all the time
 
-  helper_method :current_user_session, :current_user, :logged_in?, :current_user_is_admin?
+  helper_method :current_user_session, :current_user, :current_member, :logged_in?, :current_user_is_admin?
   
 #  def access_denied
 #    respond_to do |format|
@@ -26,6 +26,11 @@ class ApplicationController < ActionController::Base
   
   private
   
+  def current_member_session
+    return @current_member_session if defined?(@current_member_session) && !@current_member_session.nil?
+    @current_member_session = MemberSession.find
+  end
+
   def current_user_session
     return @current_user_session if defined?(@current_user_session) && !@current_user_session.nil?
     @current_user_session = UserSession.find
@@ -35,6 +40,11 @@ class ApplicationController < ActionController::Base
     return @current_user if defined?(@current_user) && !@current_user.nil?
     @current_user = current_user_session && current_user_session.user
     #@current_user = current_user_session && current_user_session.record
+  end
+  
+  def current_member
+    return @current_member if defined?(@current_member) && !@current_member.nil?
+    @current_member = current_member_session && current_member_session.member
   end
   
   def logged_in?
