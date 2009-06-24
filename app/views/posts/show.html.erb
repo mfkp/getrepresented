@@ -8,6 +8,21 @@
 </p>
 <%= link_to 'Edit', edit_post_path(@post) %> |<%= link_to 'Back', posts_path %>
 
+<!--display a response if it exists-->
+<hr> <h4>Responses</h4>
+<ul>
+	<% @post.responses.each do |response| %>
+	<li>
+		<%= h response.response %>
+		<br>
+		<div class = "dateline">
+			By <%= @members.find(response.member_id) %><br>
+			Posted on <%= response.created_at.strftime("%B %d, %Y at %I:%M %p") %>
+		</div>
+		</li>
+	<% end %>
+</ul>
+		
 <!--display all comments-->
 <hr><h4>Comments</h4>
 <ul>
