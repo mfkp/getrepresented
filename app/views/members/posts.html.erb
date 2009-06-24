@@ -6,6 +6,7 @@
 	    <li>
 	        <%= h post.title %>
 			<%= link_to 'Read', post %>
+			<%= link_to 'Respond', :controller => 'responses', :action => 'new', :id => post.id%>
 	    </li>
 	<% end %>
     <% end %>
