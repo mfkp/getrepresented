@@ -23,7 +23,7 @@ class PostsController < ApplicationController
   # GET /posts/1.xml
   def show
     @post = Post.find(params[:id])
-    @members = Member.all
+    @members = Member.find_by_sql("select * from members;")
 
     respond_to do |format|
       format.html # show.html.erb

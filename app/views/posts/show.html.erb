@@ -16,7 +16,7 @@
 		<%= h response.response %>
 		<br>
 		<div class = "dateline">
-			By <%= @members.find(response.member_id) %><br>
+			By <%= Member.find(response.member_id).first_name + " " + Member.find(response.member_id).last_name %><br>
 			Posted on <%= response.created_at.strftime("%B %d, %Y at %I:%M %p") %>
 		</div>
 		</li>
