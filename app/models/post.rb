@@ -1,6 +1,8 @@
 class Post < ActiveRecord::Base
   #acts_as_authorization_object
   #acts_as_authorizable
+  acts_as_voteable
+  
   logical_parent :member
   belongs_to :user, :foreign_key => 'created_by', :class_name => 'User'
   belongs_to :member
