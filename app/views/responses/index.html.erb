@@ -16,14 +16,6 @@
     <td><%=h response.response %></td>
 	<td><%= response.member_id %></td>
 	<td><%= link_to 'Show', response %></td>
-	<% if current_user %>
-		<% if updatable(response) %>
-	   	 	<td><%= link_to 'Edit', edit_response_path(response) %></td>
-		<% end %>
-		<% if deletable(response) %>
-			<td> <%= link_to 'Delete', response , :confirm => 'Are you sure?', :method => :delete %></td>
-		<% end %>
-	<% end %>
   </tr>
 <% end %>
 </table>
