@@ -8,6 +8,7 @@
     <th>Title</th>
     <th>Body</th>
 	<th>AuthorID</th>
+	<th>Votes</th>
   </tr>
 
 <% @posts.each do |post| %>
@@ -15,8 +16,11 @@
     <td><%=h post.title %></td>
     <td><%=h post.body %></td>
 	<td><%= post.created_by %></td>
+	<td><%= (post.votes_for - post.votes_against).to_s %>
 	<td><%= link_to 'Show', post %></td>
 	<% if current_user %>
+		<td><%= link_to 'Vote Up', url_for(:controller => 'posts', :action => 'vote', :id => post.id, :vote => 'up') %></td>
+		<td><%= link_to 'Vote Down', :controller => 'posts', :action => 'vote', :id => post.id, :vote => 'down' %></td>
 		<% if updatable(post) %>
 	   	 	<td><%= link_to 'Edit', edit_post_path(post) %></td>
 		<% end %>

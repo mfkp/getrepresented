@@ -92,4 +92,28 @@ class PostsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  # GET /posts/1
+  # GET /posts/1.xml
+  def vote
+    @post = Post.find(params[:id])
+    @vote = params[:vote]
+    if !current_user.voted_for?(@post)
+      if @vote == "up" then
+          current_user.vote_for(@post)
+          flash[:notice] = "You voted this post up."
+      end
+      if @vote == "down" then
+          current_user.vote_against(@post)
+          flash[:notice] = "You voted this post down."
+      end
+   elsif current_user.voted_for?(@post)
+     flash[:notice] = "You have already voted."
+   end
+
+    respond_to do |format|
+      format.html { redirect_to(@post) }
+      format.xml  { head :ok }
+    end
+  end
 end
