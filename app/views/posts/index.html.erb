@@ -1,12 +1,4 @@
 <% title "Listing Posts" %>
-<p>
-    <%= current_subdomain %>
-</p>
-<% if current_user %>
-<p>
-    You are logged in as <%= current_user.username %>.
-</p>
-<% end %>
 <table class="content-table">
     <tr>
         <th>Votes</th>
@@ -20,12 +12,15 @@
     <tr id="item_row<%= post.id %>">
         <td class="votes">
             <strong><span class='votes_count' id='votes_count<%= post.id %>'><%= (post.votes_for - post.votes_against).to_s %> votes</span></strong>
-            <br/>
-            <div id='vote_buttons<%= post.id %>'>
-                <%= link_to 'Vote Up', url_for(:controller => 'posts', :action => 'vote', :id => post.id, :vote => 'up') %>
-                <br/>
-                <%= link_to 'Vote Down', :controller => 'posts', :action => 'vote', :id => post.id, :vote => 'down' %>
-            </div>
+            <% if current_user %>
+				<% if !current_user.voted_for?(post)%>
+					<br/>
+		            <div id='vote_buttons<%= post.id %>'>
+		                <div style="height:24px;"><%= link_to '<img alt="I Like This" height="24" src="img/up.png" width="24" style="border:0px;float:left;" />' + '&nbsp;Vote Up', url_for(:controller => 'posts', :action => 'vote', :id => post.id, :vote => 'up') %></div>
+		                 <div style="height:24px;"><%= link_to '<img alt="No, Thanks" height="24" src="img/down.png" width="24" style="border:0px;float:left;" />' + '&nbsp;Vote Down', :controller => 'posts', :action => 'vote', :id => post.id, :vote => 'down' %></div>
+		            </div>
+				<% end %>
+			<% end %>
         </td>
         <td class="title">
             <%= link_to post.title, post %>
