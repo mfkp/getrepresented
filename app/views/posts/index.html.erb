@@ -1,5 +1,5 @@
-<% title "Listing Posts" %>
 <% if current_subdomain == nil %>
+	<% title "Listing Posts" %>
 	<table class="content-table">
 	    <tr>
 	        <th>Votes</th>
@@ -75,5 +75,7 @@
 	<%= link_to 'New post', login_path %>
 	<% end %>
 <% else %>
-	<p><%= current_subdomain %></p>
+	<% title Member.find_by_username(current_subdomain).first_name + " " + Member.find_by_username(current_subdomain).last_name %>
+	<h1><%= Member.find_by_username(current_subdomain).first_name %> <%= Member.find_by_username(current_subdomain).last_name %>'s Profile</h1>
+	<%= Member.find_by_username(current_subdomain).profile %>
 <% end %>
