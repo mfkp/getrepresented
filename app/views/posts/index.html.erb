@@ -1,26 +1,29 @@
+<% title "Listing Posts" %>
 <p><%= current_subdomain %></p>
 <% if current_user %>
 	<p>You are logged in as <%= current_user.username %>.</p>
 <% end %>
-<h1>Listing posts</h1>
-<table>
+<table class="content-table">
   <tr>
+  	<th>Votes</th>
     <th>Title</th>
     <th>Body</th>
-	<th>AuthorID</th>
-	<th>Votes</th>
+	<th>Author</th>
   </tr>
 
 <% @posts.each do |post| %>
-  <tr>
-    <td><%=h post.title %></td>
-    <td><%=h post.body %></td>
-	<td><%= post.created_by %></td>
-	<td><%= (post.votes_for - post.votes_against).to_s %>
-	<td><%= link_to 'Show', post %></td>
+  <tr id="item_row<%= post.id %>">
+  	<td class="votes">
+  		<strong><span class='votes_count' id='votes_count<%= post.id %>'><%= (post.votes_for - post.votes_against).to_s %></span></strong><br/> 
+		<div id='vote_buttons<%= post.id %>'>
+			<%= link_to 'Vote Up', url_for(:controller => 'posts', :action => 'vote', :id => post.id, :vote => 'up') %><br/> 
+			<%= link_to 'Vote Down', :controller => 'posts', :action => 'vote', :id => post.id, :vote => 'down' %> 	
+		</div>
+	</td>
+    <td class="title"><%= link_to post.title, post %></td>
+    <td class="summary"><%=h post.body %></td>
+	<td class="info"><%= User.find(post.created_by).username %></td>
 	<% if current_user %>
-		<td><%= link_to 'Vote Up', url_for(:controller => 'posts', :action => 'vote', :id => post.id, :vote => 'up') %></td>
-		<td><%= link_to 'Vote Down', :controller => 'posts', :action => 'vote', :id => post.id, :vote => 'down' %></td>
 		<% if updatable(post) %>
 	   	 	<td><%= link_to 'Edit', edit_post_path(post) %></td>
 		<% end %>
