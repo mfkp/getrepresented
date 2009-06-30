@@ -19,13 +19,16 @@ function displayRow(rowName){
 			<div id="navigation">
 				<div class="container">
 	 				<div id="navigation-logo"><span>My Agenda</span></div>
-						<a href="#"><span>Login</span></a>		
-						<a href="#"><span>Register</span></a>
-						<a href="#"><span>Congress</span></a>
-						<a href="#"><span>Home</span></a>
+						<% if current_user %>
+							<%= link_to "Logout", logout_path %>
+						  	<%= link_to "My Profile", edit_user_path(:current) %>
+						<% else %>
+							<%= link_to "Login", login_path %>
+						  	<%= link_to "Register", new_user_path %>
+						<% end %>
 					</div>
 				</div> 
-			<h1 class="container">Login to your Account</h1>
+			<h1 class="container"><%= yield(:title) %></h1>
 		</div> 
 		<div id="body">
 			<div id="container"> 
@@ -46,10 +49,13 @@ function displayRow(rowName){
 			<span style="float:left"><a href="http://validator.w3.org/check?uri=referer">
 			<img src="http://www.w3.org/Icons/valid-xhtml10-blue"
 				alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></span>
-			<a href="#"><span>Login</span></a>		
-			<a href="#"><span>Register</span></a>
-			<a href="#"><span>Congress</span></a>
-			<a href="#"><span>Home</span></a>
+			<% if current_user %>
+				<%= link_to "Logout", logout_path %>
+			  	<%= link_to "My Profile", edit_user_path(:current) %>
+			<% else %>
+				<%= link_to "Login", login_path %>
+			  	<%= link_to "Register", new_user_path %>
+			<% end %>
 		</div>
 	</div>
 <script type="text/javascript">
