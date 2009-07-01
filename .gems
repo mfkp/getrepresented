@@ -4,3 +4,6 @@ authlogic-oid
 ruby-openid -v >=2.0.4
 mdarby-restful_acl -s http://gems.github.com
 peteonrails-vote_fu -s http://gems.github.com
+json
+ym4r
+sunlight
