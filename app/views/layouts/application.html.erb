@@ -25,8 +25,8 @@
                         </div>
                         <% if current_user %>
 	                        <%= link_to "Logout", logout_path %>
-	                        <%= link_to "My Profile", edit_user_path(:current) %>
-							<%= link_to "Hello, " + current_user.username + "!", "#" %>
+	                        <%= link_to "My Profile", user_path(:current) %>
+							<%= link_to "Hello, " + current_user.username + "!", posts_path %>
                         <% else %>
 	                        <%= link_to "Login", login_path %>
 	                        <%= link_to "Register", new_user_path %>
@@ -38,10 +38,7 @@
             <div id="body">
                 <div id="container">
                     <%- flash.each do |name, msg| -%>
-                    <%= content_tag :div, msg, :id => "flash_#{name}" %>
-                    <%- end -%>
-                    <%- if show_title? -%>
-                    <h1><%=h yield(:title) %></h1>
+                   		<%= content_tag :div, msg, :id => "flash_#{name}" %>
                     <%- end -%>
                     <%= yield %>
                 </div>
@@ -51,7 +48,7 @@
             <div class="container">
                 <span style="float:left"><a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml10-blue" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></span><% if current_user %>
                 <%= link_to "Logout", logout_path %>
-                <%= link_to "My Profile", edit_user_path(:current) %>
+                <%= link_to "My Profile", user_path(:current) %>
                 <% else %>
                 <%= link_to "Login", login_path %>
                 <%= link_to "Register", new_user_path %>

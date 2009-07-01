@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090701032349) do
+ActiveRecord::Schema.define(:version => 20090701050618) do
 
   create_table "comments", :force => true do |t|
     t.integer  "post_id"
@@ -29,6 +29,13 @@ ActiveRecord::Schema.define(:version => 20090701032349) do
     t.string   "first_name"
     t.string   "last_name"
     t.text     "profile"
+  end
+
+  create_table "memberships", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "member_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "open_id_authentication_associations", :force => true do |t|

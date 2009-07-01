@@ -1,0 +1,13 @@
+<% title "My Profile" %>
+<p><b>Username:</b> <%= current_user.username %></p>
+<p><b>Email:</b> <%= current_user.email %></p>
+<p><b>Address:</b> <%= current_user.street_address + ", " + current_user.city + ", " + current_user.state + " " + current_user.zip %></p>
+<%= link_to 'Edit', edit_user_path(current_user) %> |<%= link_to 'Back', posts_path %>
+<h2>My Congress Members</h2>
+<ul>
+  <% for membership in current_user.memberships %>
+    <li>
+      <%= link_to membership.member.first_name + " " + membership.member.last_name, :controller => "members", :action => "show", :id => membership.member.id %>
+    </li>
+  <% end %>
+</ul>

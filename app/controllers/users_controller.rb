@@ -9,6 +9,21 @@ class UsersController < ApplicationController
     @user.lat = geo.lat
     @user.lng = geo.lng
     if @user.save
+       @mymembers = Sunlight::Legislator.all_for(:latitude => @user.lat, :longitude => @user.lng)
+         @senior_senator = @mymembers[:senior_senator]
+         @junior_senator = @mymembers[:junior_senator]
+         @representative = @mymembers[:representative]
+         
+         @ss_id =Member.find_by_sql(["select id from members where first_name=? and last_name=?", @senior_senator.firstname, @senior_senator.lastname])
+         @js_id =Member.find_by_sql(["select id from members where first_name=? and last_name=?", @junior_senator.firstname, @junior_senator.lastname])
+         @rep_id =Member.find_by_sql(["select id from members where first_name=? and last_name=?", @representative.firstname, @representative.lastname])
+         @membership = current_user.memberships.build(:member_id => @ss_id[0].id)
+         @membership.save
+         @membership = current_user.memberships.build(:member_id => @js_id[0].id)
+         @membership.save
+         @membership = current_user.memberships.build(:member_id => @rep_id[0].id)
+         @membership.save
+
       flash[:notice] = "Registration Successful."
       redirect_to root_url
     else
