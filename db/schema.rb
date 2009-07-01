@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090625184332) do
+ActiveRecord::Schema.define(:version => 20090701032349) do
 
   create_table "comments", :force => true do |t|
     t.integer  "post_id"
@@ -75,6 +75,12 @@ ActiveRecord::Schema.define(:version => 20090625184332) do
     t.string   "openid_identifier"
     t.string   "role"
     t.boolean  "is_admin",          :default => false
+    t.string   "street_address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.float    "lat"
+    t.float    "lng"
   end
 
   add_index "users", ["openid_identifier"], :name => "index_users_on_openid_identifier"

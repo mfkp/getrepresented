@@ -16,5 +16,22 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation %>
   </p>
+  <h3>Your Address</h3>
+  <p>
+  	<%= f.label :street_address %><br/>
+	<%= f.text_field :street_address %>
+  </p>
+  <p>
+  	<%= f.label :city %><br/>
+	<%= f.text_field :city %>
+  </p>
+  <p>
+  	<%= f.label :state %><br/>
+	<%= f.text_field :state %>
+  </p>
+  <p>
+  	<%= f.label :zip %><br/>
+	<%= f.text_field :zip %>
+  </p>
   <p><%= f.submit "Submit" %></p>
 <% end %>

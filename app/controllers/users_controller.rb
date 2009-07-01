@@ -5,6 +5,9 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(params[:user])
+      geo = Geokit::Geocoders::GoogleGeocoder.geocode @user.street_address + ", " + @user.city + ", " + @user.state + " " + @user.zip
+    @user.lat = geo.lat
+    @user.lng = geo.lng
     if @user.save
       flash[:notice] = "Registration Successful."
       redirect_to root_url
