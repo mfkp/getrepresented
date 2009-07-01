@@ -6,8 +6,6 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      #current_user.has_role!(:general_users)
-    #@user.has_role :general_user, @post
       flash[:notice] = "Registration Successful."
       redirect_to root_url
     else

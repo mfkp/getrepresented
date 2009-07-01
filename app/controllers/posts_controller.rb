@@ -108,7 +108,7 @@ class PostsController < ApplicationController
           flash[:notice] = "You voted this post down."
       end
    elsif current_user.voted_for?(@post)
-     flash[:notice] = "You have already voted."
+     flash[:error] = "You have already voted."
    end
 
     respond_to do |format|

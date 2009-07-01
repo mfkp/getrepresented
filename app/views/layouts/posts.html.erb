@@ -35,6 +35,9 @@ function displayRow(rowName){
 			<% if flash[:notice] %>
 				<p style="color: green"><%= flash[:notice] %></p>
 			<% end %>
+			<% if flash[:error] %>
+				<p style="color: red"><%= flash[:error] %></p>
+			<% end %>
 			<%= yield %>
 		</div>
 	</div> 

@@ -4,7 +4,10 @@
 	<h1><%= @current_member.first_name %> <%= @current_member.last_name %>'s Profile</h1>
 	<%= @current_member.profile %>
 <% else %>
-<% title "Listing Posts" %>
+	<% title "Listing Posts" %>
+	<% if current_subdomain != nil && Member.find_by_username(current_subdomain) == nil %>
+		<% flash[:error] = 'Invalid subdomain - No match found for "' + current_subdomain + '".' %>
+	<% end %>
 	<table class="content-table">
 	    <tr>
 	        <th>Votes</th>
