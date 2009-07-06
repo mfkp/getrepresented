@@ -7,7 +7,7 @@ namespace :db do
     puts "Adding new members to database..."
     allMembers.each do |member|
       if Member.find(:first, :conditions => {:first_name => member.firstname, :last_name => member.lastname}) == nil
-        username = formatString(member.firstname.downcase) + formatString(member.lastname.downcase)
+        username = formatString(member.firstname) + formatString(member.lastname)
         if (member.email == "")
               email = username + "@demo.com"
         else
@@ -15,9 +15,9 @@ namespace :db do
         end
         @newMember = Member.new(:first_name => member.firstname, :last_name => member.lastname, :username =>username, :profile => "", :email => email, :password => "password", :password_confirmation => "password")
         if @newMember.save
-            puts "Sucessfully added member " + member.firstname + " " + member.lastname + ", username: " + member.firstname.downcase + member.lastname.downcase
+            puts "Sucessfully added member " + member.firstname + " " + member.lastname + ", username: " + username
         else
-            puts "ERROR ADDING MEMBER " + member.firstname + " " + member.lastname + ", username: " + member.firstname.downcase + member.lastname.downcase
+            puts "ERROR ADDING MEMBER " + member.firstname + " " + member.lastname + ", username: " + username
         end
           count += 1
       end
@@ -32,8 +32,6 @@ namespace :db do
     s = Iconv.iconv('ascii//ignore//translit', 'utf-8', str).to_s
     # Downcase string
     s.downcase!
-    # Remove apostrophes so isn't changes to isnt
-    s.gsub!(/'/, '')
     # Replace any non-letter or non-number character with a space
     s.gsub!(/[^A-Za-z0-9]+/, '')
     # Remove spaces from beginning and end of string
