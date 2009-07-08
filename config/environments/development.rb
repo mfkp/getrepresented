@@ -16,6 +16,6 @@ config.action_controller.perform_caching             = false
 # Don't care if the mailer can't send
 config.action_mailer.raise_delivery_errors = false
 
-config.action_controller.session[:domain] = '.myagenda.org'
+#config.action_controller.session[:domain] = '.myagenda.org'
 #ApplicationController.session_options.update( :session_domain => 'myagenda.org' )
 #ActionController::CgiRequest::DEFAULT_SESSION_OPTIONS.update( :session_domain => '.myagenda.org' )

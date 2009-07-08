@@ -57,6 +57,7 @@ Rails::Initializer.run do |config|
   # Make sure the secret is at least 30 characters and all random, 
   # no regular words or you'll be exposed to dictionary attacks.
   config.action_controller.session = {
+    :domain => 'myagenda.org',
     :session_key => '_GetRepresented_session',
     :secret      => '091ebe1a403421884b0f3f231ae2318eb2621742148854caaf854c1f2c2188c4dcc2dcf682b40e0e943985d4a70ba2a39a8977d11ca4f0a6116c51bed6eab69f'
   }
