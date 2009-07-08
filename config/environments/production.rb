@@ -21,11 +21,5 @@ config.action_view.cache_template_loading            = true
 # Disable delivery errors, bad email addresses will be ignored
 # config.action_mailer.raise_delivery_errors = false
 
-config.action_controller.session = {
-  :session_domain => 'myagenda.org',
-  :session_key => '_app_session',
-  :secret => 'secret_key'
-}
-
 #ApplicationController.session_options.update( :session_domain => 'myagenda.org' )
 #ActionController::CgiRequest::DEFAULT_SESSION_OPTIONS.update( :session_domain => '.myagenda.org' )
