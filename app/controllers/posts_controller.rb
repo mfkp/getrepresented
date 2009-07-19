@@ -35,6 +35,10 @@ class PostsController < ApplicationController
   # GET /posts/new.xml
   def new
     @post = Post.new
+    @members = []
+    for membership in current_user.memberships
+       @members.push([membership.member.first_name + " " + membership.member.last_name, membership.member.id])
+    end
 
     respond_to do |format|
       format.html # new.html.erb
