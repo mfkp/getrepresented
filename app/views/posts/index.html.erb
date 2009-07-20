@@ -3,6 +3,20 @@
 	<% title @current_member.first_name + " " + @current_member.last_name %>
 	<h1><%= @current_member.first_name %> <%= @current_member.last_name %>'s Profile</h1>
 	<%= @current_member.profile %>
+	<h4>Constituent Posts</h4>
+	<ul>
+	    <% @posts.each do |post| %>
+		<% if post.member_id == @member.id %>
+		    <li>
+		        <%= h post.title %>
+				<%= link_to 'Read', post %>
+				<% if current_member %>
+					<%= link_to 'Respond', :controller => 'responses', :action => 'new', :id => post.id%>
+				<% end %>
+		    </li>
+		<% end %>
+	    <% end %>
+	</ul>
 <% else %>
 	<% title "Listing Posts" %>
 	<% if current_subdomain != nil && Member.find_by_username(current_subdomain) == nil %>
