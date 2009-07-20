@@ -11,3 +11,16 @@
     <%=h @member.profile %>
 </p>
 <%= link_to 'Edit', edit_member_path(@member) %> |<%= link_to 'Back', root_url %>
+
+<h4>Constituent Posts</h4>
+<ul>
+    <% @posts.each do |post| %>
+	<% if post.member_id == @member.id %>
+	    <li>
+	        <%= h post.title %>
+			<%= link_to 'Read', post %>
+			<%= link_to 'Respond', :controller => 'responses', :action => 'new', :id => post.id%>
+	    </li>
+	<% end %>
+    <% end %>
+</ul>

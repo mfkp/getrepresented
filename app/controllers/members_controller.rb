@@ -31,6 +31,7 @@ class MembersController < ApplicationController
   # GET /members/1.xml
   def show
   @member = Member.find(params[:id])
+  @posts = Post.all
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @member }
