@@ -10,7 +10,9 @@
     <b>Profile:</b>
     <%=h @member.profile %>
 </p>
-<%= link_to 'Edit', edit_member_path(@member) %> |<%= link_to 'Back', root_url %>
+<% if current_member %>
+	<%= link_to 'Edit', edit_member_path(@member) %> |<%= link_to 'Back', root_url %>
+<% end %>
 
 <h4>Constituent Posts</h4>
 <ul>
