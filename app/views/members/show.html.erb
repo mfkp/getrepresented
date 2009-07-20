@@ -21,7 +21,9 @@
 	    <li>
 	        <%= h post.title %>
 			<%= link_to 'Read', post %>
-			<%= link_to 'Respond', :controller => 'responses', :action => 'new', :id => post.id%>
+			<% if current_member %>
+				<%= link_to 'Respond', :controller => 'responses', :action => 'new', :id => post.id%>
+			<% end %>
 	    </li>
 	<% end %>
     <% end %>
