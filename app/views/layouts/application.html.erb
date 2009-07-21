@@ -26,10 +26,12 @@
                         <% if current_user %>
 	                        <%= link_to "Logout", logout_path %>
 	                        <%= link_to "My Profile", user_path(:current) %>
+							<%= link_to "Categories", :controller => 'categories', :action => 'index' %>
 							<%= link_to "Hello, " + current_user.username + "!", posts_path %>
                         <% else %>
 	                        <%= link_to "Login", login_path %>
 	                        <%= link_to "Register", new_user_path %>
+							<%= link_to "Categories", :controller => 'categories', :action => 'index' %>
                         <% end %>
                     </div>
                 </div>
@@ -49,9 +51,11 @@
                 <span style="float:left"><a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml10-blue" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></span><% if current_user %>
                 <%= link_to "Logout", logout_path %>
                 <%= link_to "My Profile", user_path(:current) %>
+				<%= link_to "Categories", :controller => 'categories', :action => 'index' %>
                 <% else %>
                 <%= link_to "Login", login_path %>
                 <%= link_to "Register", new_user_path %>
+				<%= link_to "Categories", :controller => 'categories', :action => 'index' %>
                 <% end %>
             </div>
         </div>
