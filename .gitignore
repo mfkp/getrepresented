@@ -1,4 +1,4 @@
-log/development.log
+log/*.log
 config/database.yml
 app/views/*/.tmp*
-db/development.sqlite3.db
+db/*sqlite3*
