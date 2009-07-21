@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  #require 'sqlite3'
   #before_filter :has_permission?, :except => :index
   
 #before_filter :require_user, :only => [:new, :edit, :create, :update, :destroy]
@@ -23,6 +24,9 @@ class PostsController < ApplicationController
   # GET /posts/1.xml
   def show
     @post = Post.find(params[:id])
+    if(@post.category_id != nil)
+      @category = Category.find(@post.category_id)
+    end
     @members = Member.all
 
     respond_to do |format|
@@ -39,6 +43,15 @@ class PostsController < ApplicationController
     for membership in current_user.memberships
        @members.push([membership.member.first_name + " " + membership.member.last_name, membership.member.id])
     end
+    #db = SQLite3::Database.new("db/development.sqlite3.db")
+    #@categories = db.execute("select name, id from tags")
+    @allcategories = Category.all
+    @categories = []
+    for category in @allcategories
+      @categories.push([category.name, category.id])
+    end
+    #@categories = ActiveRecord::Base.connection.execute("select name, id from tags")
+    #puts @categories
 
     respond_to do |format|
       format.html # new.html.erb
@@ -55,6 +68,7 @@ class PostsController < ApplicationController
   # POST /posts.xml
   def create
     @post = Post.new(params[:post])
+    #@post.tag_list = params[:tag_list]
 
     respond_to do |format|
       if @post.save

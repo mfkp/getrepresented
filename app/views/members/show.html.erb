@@ -14,7 +14,7 @@
 	<%= link_to 'Edit', edit_member_path(@member) %> |<%= link_to 'Back', root_url %>
 <% end %>
 
-<h4>Constituent Posts</h4>
+<h1>Constituent Posts</h1>
 <ul>
     <% @posts.each do |post| %>
 	<% if post.member_id == @member.id %>

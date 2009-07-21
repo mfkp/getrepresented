@@ -11,6 +11,10 @@
   <p>
 	<%= select("post", "member_id", @members) %>
   </p>
+  <h3>Category</h3>
+  <p>
+	<%= select("post", "category_id", @categories) %>
+  </p>
   <p>
     <%= f.label :body %><br />
     <%= f.text_area :body %>

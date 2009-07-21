@@ -3,7 +3,7 @@
 	<% title @current_member.first_name + " " + @current_member.last_name %>
 	<h1><%= @current_member.first_name %> <%= @current_member.last_name %>'s Profile</h1>
 	<%= @current_member.profile %>
-	<h4>Constituent Posts</h4>
+	<h1>Constituent Posts</h1>
 	<ul>
 	    <% @posts.each do |post| %>
 		<% if post.member_id == @current_member.id %>

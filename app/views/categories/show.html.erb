@@ -1,0 +1,9 @@
+<h1>Posts about <%= @category.name %></h1>
+<ul>
+<% @categoryposts.each do |post| %>
+	<li><%= link_to post.title, :controller => 'posts', :action => 'show', :id => post.id %></li>
+<% end %>
+</ul>
+<% if @categoryposts.empty? %>
+	There are currently no posts in this category.
+<% end %>

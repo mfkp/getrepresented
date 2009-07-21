@@ -1,3 +1,12 @@
+<% if current_user %>
+    <% if updatable(@post) %>
+        <%= link_to 'Edit My Post', edit_post_path(@post) %> | 
+    <% end %>
+    <% if deletable(@post) %>
+        <%= link_to 'Delete My Post', @post , :confirm => 'Are you sure?', :method => :delete %> | 
+    <% end %>
+<% end %>
+<%= link_to 'Back', posts_path %>
 <% title @post.title %>
 <p>
     <b>Title:</b>
@@ -7,7 +16,12 @@
     <b>Body:</b>
     <%=h @post.body %>
 </p>
-<%= link_to 'Edit', edit_post_path(@post) %> |<%= link_to 'Back', posts_path %>
+<p>
+	<b>Category:</b>
+	<% if @category != nil %>
+		<%= link_to @category.name, :controller => 'categories', :action => 'show', :id => @category.id %>
+	<% end %>
+</p>
 <%= "<br/><b>Votes: " + (@post.votes_for - @post.votes_against).to_s + "</b> (" + @post.votes_for.to_s + " up, " + @post.votes_against.to_s + " down)" %>
 
 <!--display a response if it exists-->
