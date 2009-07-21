@@ -1,7 +1,7 @@
 class MemberSessionsController < ApplicationController
   
   def new
-    @user_session = MemberSession.new
+    @member_session = MemberSession.new
   end
   
   def create
