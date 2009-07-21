@@ -1,4 +1,4 @@
-<h1>Posts about <%= @category.name %></h1>
+<% title "Category: " + @category.name %>
 <ul>
 <% @categoryposts.each do |post| %>
 	<li><%= link_to post.title, :controller => 'posts', :action => 'show', :id => post.id %></li>
