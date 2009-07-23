@@ -21,7 +21,7 @@ function displayRow(rowName){
 	 				<div id="navigation-logo"><span>My Agenda</span></div>
 						<% if current_user %>
 							<%= link_to "Logout", logout_path %>
-						  	<%= link_to "My Profile", user_path(:current) %>
+						  	<%= link_to "My Profile", :controller => 'users', :subdomain => false %>
 							<%= link_to "Categories", :controller => 'categories', :action => 'index', :subdomain => false %>
 							<%= link_to "Hello, " + current_user.username + "!", :controller => 'posts', :action => 'index', :subdomain => 'false' %>
 						<% else %>
