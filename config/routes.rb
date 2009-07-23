@@ -6,8 +6,6 @@ ActionController::Routing::Routes.draw do |map|
   map.logout "logout", :controller => "user_sessions", :action => "destroy"
   map.memberlogin "memberlogin", :controller => "member_sessions", :action => "new"
   map.memberlogout "memberlogout", :controller => "member_sessions", :action => "destroy"
-  map.error '/error', :controller => 'posts'#, :action => 'error_action'
-  map.denied '/denied', :controller => 'posts'#, :action => 'denied_action'
   
   map.resources :user_sessions
   map.resources :users

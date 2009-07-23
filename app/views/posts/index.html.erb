@@ -91,6 +91,7 @@
 	    <% end %>
 	</table>
 	<br/>
+	<%= will_paginate @posts %>
 	<% if current_user %>
 	<%= link_to 'New post', new_post_path %>
 	<% else %>

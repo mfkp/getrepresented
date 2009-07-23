@@ -12,7 +12,8 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.xml
   def index
-    @posts = Post.all
+    #@posts = Post.all
+    @posts = Post.search(params[:search], params[:page])
 
     respond_to do |format|
       format.html # index.html.erb

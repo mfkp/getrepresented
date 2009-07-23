@@ -13,6 +13,10 @@ class Post < ActiveRecord::Base
   
   validates_presence_of :title, :body
   
+  def self.search(search, page)
+    paginate :page => page, :per_page => 10, :conditions => [ 'title like ?', "%#{search}%"], :order => 'created_at DESC'
+  end
+  
   def self.is_indexable_by(user, parent = nil)
 #    user.members.include?(parent)
   end
