@@ -2,10 +2,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :memberships
 
 
-  map.login "login", :controller => "user_sessions", :action => "new"
-  map.logout "logout", :controller => "user_sessions", :action => "destroy"
-  map.memberlogin "memberlogin", :controller => "member_sessions", :action => "new"
-  map.memberlogout "memberlogout", :controller => "member_sessions", :action => "destroy"
+  map.login "login", :controller => "user_sessions", :action => "new", :subdomain => false
+  map.logout "logout", :controller => "user_sessions", :action => "destroy", :subdomain => false
+  map.memberlogin "memberlogin", :controller => "member_sessions", :action => "new", :subdomain => false
+  map.memberlogout "memberlogout", :controller => "member_sessions", :action => "destroy", :subdomain => false
   
   map.resources :user_sessions
   map.resources :users
