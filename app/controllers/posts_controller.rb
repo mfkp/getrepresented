@@ -14,6 +14,14 @@ class PostsController < ApplicationController
   def index
     #@posts = Post.all
     @posts = Post.search(params[:search], params[:page])
+    @page_member = Member.find_by_username(current_subdomain)
+    if !@page_member.nil?
+      @questionposts = Post.questions(@page_member.id)
+      @ideaposts = Post.ideas(@page_member.id)
+      @problemposts = Post.problems(@page_member.id)
+      @praiseposts = Post.praise(@page_member.id)
+      @allposts = [@qustionposts, @ideaposts, @problemposts, @praiseposts]
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -28,6 +36,9 @@ class PostsController < ApplicationController
     if(@post.category_id != nil)
       @category = Category.find(@post.category_id)
     end
+    if(@post.type_id != nil)
+      @type = Type.find(@post.type_id)
+    end
     @members = Member.all
 
     respond_to do |format|
@@ -39,20 +50,25 @@ class PostsController < ApplicationController
   # GET /posts/new
   # GET /posts/new.xml
   def new
-    @post = Post.new
+    
     @members = []
     for membership in current_user.memberships
        @members.push([membership.member.first_name + " " + membership.member.last_name, membership.member.id])
     end
-    #db = SQLite3::Database.new("db/development.sqlite3.db")
-    #@categories = db.execute("select name, id from tags")
+
     @allcategories = Category.all
     @categories = []
     for category in @allcategories
       @categories.push([category.name, category.id])
     end
-    #@categories = ActiveRecord::Base.connection.execute("select name, id from tags")
-    #puts @categories
+    
+    @alltypes = Type.all
+    @types = []
+    for type in @alltypes
+      @types.push([type.name, type.id])
+    end
+
+    @post = Post.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -69,7 +85,6 @@ class PostsController < ApplicationController
   # POST /posts.xml
   def create
     @post = Post.new(params[:post])
-    #@post.tag_list = params[:tag_list]
 
     respond_to do |format|
       if @post.save

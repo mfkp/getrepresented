@@ -39,12 +39,25 @@ namespace :db do
           @newCategory.save
         end
       end
-      
+    puts "Done!"
+  end
+  
+  desc "Populates the tag list with categories"
+  task :add_types => :environment do
+    puts "Adding types to type list..."
+      typelist = ["Question", "Idea", "Problem", "Praise"]
+      typelist.each do |type|
+        if Type.find(:first, :conditions => {:name => type}) == nil
+          puts "Adding type " + type
+          @newType = Type.new(:name => type)
+          @newType.save
+        end
+      end
     puts "Done!"
   end
   
   desc "Updates congress members and categories"
-  task :update_all => [:update_members, :add_categories]
+  task :update_all => [:update_members, :add_categories, :add_types]
 
   def formatString(str)
     # Based on permalink_fu by Rick Olsen

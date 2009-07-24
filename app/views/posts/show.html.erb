@@ -17,6 +17,12 @@
     <%=h @post.body %>
 </p>
 <p>
+	<b>Type:</b>
+	<% if @type != nil %>
+		<%= @type.name %>
+	<% end %>
+</p>
+<p>
 	<b>Category:</b>
 	<% if @category != nil %>
 		<%= link_to @category.name, :controller => 'categories', :action => 'show', :id => @category.id %>

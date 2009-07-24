@@ -19,6 +19,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'posts/vote/:id/:vote', :controller => 'posts', :action => 'vote'
   map.connect 'categories', :controller => 'categories', :action => 'index'
   map.connect 'categories/:id', :controller => 'categories', :action => 'show'
+  map.connect 'types/:id', :controller => 'types', :action => 'show'
   
   map.root :controller => 'posts'
 

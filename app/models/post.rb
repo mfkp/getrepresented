@@ -10,6 +10,7 @@ class Post < ActiveRecord::Base
   has_many :comments
   has_many :responses
   has_and_belongs_to_many :category
+  has_and_belongs_to_many :type
   
   validates_presence_of :title, :body
   
@@ -36,5 +37,10 @@ class Post < ActiveRecord::Base
   def is_readable_by(user, parent = nil)
     true
   end
+  
+  named_scope :questions, lambda { |member| {:conditions => { :type_id => 1, :member_id => member } } }
+  named_scope :ideas, lambda { |member| {:conditions => { :type_id => 2, :member_id => member } } }
+  named_scope :problems, lambda { |member| {:conditions => { :type_id => 3, :member_id => member } } }
+  named_scope :praise, lambda { |member| {:conditions => { :type_id => 4, :member_id => member } } }
 
 end

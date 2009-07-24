@@ -1,15 +1,53 @@
 <% if current_subdomain != nil && Member.find_by_username(current_subdomain) != nil %>
-	<% @current_member = Member.find_by_username(current_subdomain) %>
-	<% title @current_member.first_name + " " + @current_member.last_name %>
-	<h1><%= @current_member.first_name %> <%= @current_member.last_name %>'s Profile</h1>
-	<%= @current_member.profile %>
-	<h1>Constituent Posts</h1>
+	<% @page_member = Member.find_by_username(current_subdomain) %>
+	<% title @page_member.first_name + " " + @page_member.last_name %>
+	<h1><%= @page_member.first_name %> <%= @page_member.last_name %>'s Profile</h1>
+	<%= @page_member.profile %>
+	<h1>Questions</h1>
 	<ul>
-	    <% @posts.each do |post| %>
-		<% if post.member_id == @current_member.id %>
+	    <% @questionposts.each do |post| %>
+		<% if post.member_id == @page_member.id %>
 		    <li>
-		        <%= h post.title %>
-				<%= link_to 'Read', post %>
+		        <%= link_to post.title, post %>
+				<% if current_member %>
+					<%= link_to 'Respond', :controller => 'responses', :action => 'new', :id => post.id%>
+				<% end %>
+		    </li>
+		<% end %>
+	    <% end %>
+	</ul>
+	<h1>Ideas</h1>
+	<ul>
+	    <% @ideaposts.each do |post| %>
+		<% if post.member_id == @page_member.id %>
+		    <li>
+		        <%= link_to post.title, post %>
+				<% if current_member %>
+					<%= link_to 'Respond', :controller => 'responses', :action => 'new', :id => post.id%>
+				<% end %>
+		    </li>
+		<% end %>
+	    <% end %>
+	</ul>
+	<h1>Problems</h1>
+	<ul>
+	    <% @problemposts.each do |post| %>
+		<% if post.member_id == @page_member.id %>
+		    <li>
+		        <%= link_to post.title, post %>
+				<% if current_member %>
+					<%= link_to 'Respond', :controller => 'responses', :action => 'new', :id => post.id%>
+				<% end %>
+		    </li>
+		<% end %>
+	    <% end %>
+	</ul>
+	<h1>Praise</h1>
+	<ul>
+	    <% @praiseposts.each do |post| %>
+		<% if post.member_id == @page_member.id %>
+		    <li>
+		        <%= link_to post.title, post %>
 				<% if current_member %>
 					<%= link_to 'Respond', :controller => 'responses', :action => 'new', :id => post.id%>
 				<% end %>
