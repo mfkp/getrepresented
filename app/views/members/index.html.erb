@@ -1,0 +1,12 @@
+<% title "Congress Members" %>
+<% previous_state = "" %>
+<ul>
+	<% @members.each do |member| %>
+		<% if member.state != previous_state %>
+			</ul><%=h member.state %><ul>
+		<% end %>
+		<% previous_state = member.state %>
+		<li><%= link_to member.title + " " + member.first_name + " " + member.last_name, 
+			:subdomain => member.username, :controller => 'posts', :action => 'index' %></li>
+	<% end %>
+</ul>

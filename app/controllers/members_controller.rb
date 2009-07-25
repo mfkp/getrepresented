@@ -1,4 +1,8 @@
 class MembersController < ApplicationController
+  def index
+    @members = Member.all.sort_by{|m| m.state.upcase}
+  end
+  
   def new
     @member = Member.new
   end

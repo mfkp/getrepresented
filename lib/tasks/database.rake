@@ -9,11 +9,14 @@ namespace :db do
       if Member.find(:first, :conditions => {:first_name => member.firstname, :last_name => member.lastname}) == nil
         username = formatString(member.firstname) + formatString(member.lastname)
         if (member.email == "")
-              email = username + "@demo.com"
+              email = username + "@myagenda.org"
         else
             email = member.email
         end
-        @newMember = Member.new(:first_name => member.firstname, :last_name => member.lastname, :username =>username, :profile => "", :email => email, :password => "password", :password_confirmation => "password")
+        @newMember = Member.new(:first_name => member.firstname, :last_name => member.lastname, :username =>username, 
+        :profile => "", :email => email, :password => "password", :password_confirmation => "password", :title => member.title,
+        :party => member.party, :state => member.state, :district => member.district, :phone => member.phone,
+        :fax => member.fax, :website => member.website, :office => member.congress_office)
         if @newMember.save
             puts "Sucessfully added member " + member.firstname + " " + member.lastname + ", username: " + username
         else

@@ -7,7 +7,8 @@
 <ul>
   <% for membership in current_user.memberships %>
     <li>
-      <%= link_to membership.member.first_name + " " + membership.member.last_name, :controller => "members", :action => "show", :id => membership.member.id %>
+      <%= link_to membership.member.first_name + " " + membership.member.last_name, :subdomain => membership.member.username, 
+		:controller => "posts", :action => "index" %>
     </li>
   <% end %>
 </ul>
