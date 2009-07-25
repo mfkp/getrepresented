@@ -1,4 +1,4 @@
-class AddProfileFieldsToMembers < ActiveRecord::Migration
+class CreateMembers < ActiveRecord::Migration
   def self.up
     create_table :members do |t|
       t.string :username
