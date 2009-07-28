@@ -6,6 +6,6 @@ mdarby-restful_acl -s http://gems.github.com
 peteonrails-vote_fu -s http://gems.github.com
 json
 ym4r
-sunlight
+sunlight -v >=1.0.1
 geokit
 mislav-will_paginate -s http://gems.github.com

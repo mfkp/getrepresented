@@ -14,16 +14,21 @@ class UsersController < ApplicationController
          @junior_senator = @mymembers[:junior_senator]
          @representative = @mymembers[:representative]
          
-         @ss_id =Member.find_by_sql(["select id from members where first_name=? and last_name=?", @senior_senator.firstname, @senior_senator.lastname])
-         @js_id =Member.find_by_sql(["select id from members where first_name=? and last_name=?", @junior_senator.firstname, @junior_senator.lastname])
-         @rep_id =Member.find_by_sql(["select id from members where first_name=? and last_name=?", @representative.firstname, @representative.lastname])
-         @membership = current_user.memberships.build(:member_id => @ss_id[0].id)
-         @membership.save
-         @membership = current_user.memberships.build(:member_id => @js_id[0].id)
-         @membership.save
-         @membership = current_user.memberships.build(:member_id => @rep_id[0].id)
-         @membership.save
-
+         if !@senior_senator.nil?
+            @ss_id =Member.find_by_sql(["select id from members where first_name=? and last_name=?", @senior_senator.firstname, @senior_senator.lastname])
+            @membership = current_user.memberships.build(:member_id => @ss_id[0].id)
+            @membership.save
+         end
+         if !@junior_senator.nil?
+            @js_id =Member.find_by_sql(["select id from members where first_name=? and last_name=?", @junior_senator.firstname, @junior_senator.lastname])
+            @membership = current_user.memberships.build(:member_id => @js_id[0].id)
+            @membership.save
+         end
+         if !@representative.nil?
+            @rep_id =Member.find_by_sql(["select id from members where first_name=? and last_name=?", @representative.firstname, @representative.lastname])
+            @membership = current_user.memberships.build(:member_id => @rep_id[0].id)
+            @membership.save
+         end
       flash[:notice] = "Registration Successful."
       redirect_to root_url
     else
