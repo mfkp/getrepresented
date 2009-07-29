@@ -97,17 +97,17 @@
 	        </td>
 			<td>
 		        <% if post.responses.count > 0 %>
-		            <img alt="Response" height="24" src="img/star_48.png" width="24" />&nbsp;<a href="javascript:;" onmousedown="displayRow('response<%= post.id %>');">View Response</a>
+		            <img alt="Response" height="16" src="img/response.png" width="16" />&nbsp;<a href="javascript:;" onmousedown="displayRow('response<%= post.id %>');">View Response</a><br/>
 		        <% end %>
 				<% if post.comments.count > 0 %>
-					<img alt="Comments" src="img/comment.png" width="24" height="24" />&nbsp;<%= link_to "Comments", post %>
+					<img alt="Comments" src="img/comments.png" width="16" height="16" />&nbsp;<%= link_to "Comments", post %><br/>
 				<% end %>
 				<% if current_user %>
 			        <% if updatable(post) %>
-			            <br/><%= link_to 'Edit My Post', edit_post_path(post) %>
+			            <img alt="Edit" src="img/edit.png" width="16" height="16" /><%= link_to 'Edit My Post', edit_post_path(post) %>
 			        <% end %>
 			        <% if deletable(post) %>
-			            <br/><%= link_to 'Delete My Post', post , :confirm => 'Are you sure?', :method => :delete %>
+			            <br/><img alt="Delete" src="img/delete.png" width="16" height="16" /><%= link_to 'Delete My Post', post , :confirm => 'Are you sure?', :method => :delete %>
 			        <% end %>
 		        <% end %>
 			</td>
