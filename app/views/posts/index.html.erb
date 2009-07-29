@@ -74,11 +74,14 @@
 	        <td class="votes">
 	            <strong><span class='votes_count' id='votes_count<%= post.id %>'><%= (post.votes_for - post.votes_against).to_s %> votes</span></strong>
 	            <% if current_user %>
-					<% if !current_user.voted_for?(post)%>
+					<% if !current_user.voted_for?(post) && !current_user.voted_against?(post) %>
 						<br/>
 			            <div id='vote_buttons<%= post.id %>'>
-			                <div style="height:24px;"><%= link_to '<img alt="I Like This" height="24" src="img/up.png" width="24" style="border:0px;float:left;" />' + '&nbsp;Vote Up', url_for(:controller => 'posts', :action => 'vote', :id => post.id, :vote => 'up') %></div>
-			                 <div style="height:24px;"><%= link_to '<img alt="No, Thanks" height="24" src="img/down.png" width="24" style="border:0px;float:left;" />' + '&nbsp;Vote Down', :controller => 'posts', :action => 'vote', :id => post.id, :vote => 'down' %></div>
+			                <div style="height:18px;">
+								<%= link_to '<img alt="I Like This" height="18" src="img/vote-for.gif" width="21" style="border:0px;float:left;" />', url_for(:controller => 'posts', :action => 'vote', :id => post.id, :vote => 'up') %>
+			                	&nbsp;&nbsp;
+								<%= link_to '<img alt="No, Thanks" height="18" src="img/vote-against.gif" width="21" style="border:0px;" />', :controller => 'posts', :action => 'vote', :id => post.id, :vote => 'down' %>
+							</div>
 			            </div>
 					<% end %>
 				<% end %>
