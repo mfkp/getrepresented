@@ -4,6 +4,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
         <title><%= h(yield(:title) || "Untitled") %></title>
         <%= stylesheet_link_tag 'application' %>
+		<%= stylesheet_link_tag 'formcheck' %>
+		<%= javascript_include_tag 'mootools-1.2.3-core-yc' %>
+		<%= javascript_include_tag 'mootools-1.2.3.1-more' %>
+		<%= javascript_include_tag 'formcheck' %>
+		<%= javascript_include_tag 'formcheck_en' %>
         <%= yield(:head) %>
     </head>
     <body>

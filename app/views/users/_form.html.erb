@@ -1,37 +1,46 @@
 <% form_for @user do |f| %>
   <%= f.error_messages %>
+  <fieldset style="float: left;"><legend>Account Information</legend>
   <p>
     <%= f.label :username %><br />
-    <%= f.text_field :username %>
+    <%= f.text_field :username, :class => "validate['required']" %>
   </p>
   <p>
     <%= f.label :email %><br />
-    <%= f.text_field :email %>
+    <%= f.text_field :email, :class => "validate['required','email']" %>
   </p>
   <p>
     <%= f.label :password %><br />
-    <%= f.password_field :password %>
+    <%= f.password_field :password, :class => "validate['required']" %>
   </p>
   <p>
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %>
+    <%= f.password_field :password_confirmation, :class => "validate['required']" %>
   </p>
-  <h3>Your Address</h3>
+  </fieldset>
+  <fieldset style="float: left;"><legend>Address</legend>
   <p>
   	<%= f.label :street_address %><br/>
-	<%= f.text_field :street_address %>
+	<%= f.text_field :street_address, :class => "validate['required','alphanum']" %>
   </p>
   <p>
   	<%= f.label :city %><br/>
-	<%= f.text_field :city %>
+	<%= f.text_field :city, :class => "validate['required','alpha']" %>
   </p>
   <p>
   	<%= f.label :state %><br/>
-	<%= f.text_field :state %>
+	<%= f.text_field :state, :class => "validate['required','alpha']" %>
   </p>
   <p>
   	<%= f.label :zip %><br/>
-	<%= f.text_field :zip %>
+	<%= f.text_field :zip, :class => "validate['required','digit[5-9]']" %>
   </p>
-  <p><%= f.submit "Submit" %></p>
+  </fieldset>
+  <div style="clear: both;">&nbsp;</div>
+  <p><%= f.submit "Submit", :value => "Create my Account", :class => "validate['submit']" %></p>
 <% end %>
+<script type="text/javascript">
+    window.addEvent('domready', function(){
+        new FormCheck('new_user');
+    });
+</script>
