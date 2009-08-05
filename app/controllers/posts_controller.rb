@@ -20,11 +20,11 @@ class PostsController < ApplicationController
     end
     @page_member = Member.find_by_username(current_subdomain)
     if !@page_member.nil?
-      @questionposts = Post.questions(@page_member.id)
-      @ideaposts = Post.ideas(@page_member.id)
-      @problemposts = Post.problems(@page_member.id)
-      @praiseposts = Post.praise(@page_member.id)
-      @allposts = [@qustionposts, @ideaposts, @problemposts, @praiseposts]
+      @questions = Post.questions(@page_member.id).search(params[:search], params[:page])
+      @ideas = Post.ideas(@page_member.id).search(params[:search], params[:page])
+      @problems = Post.problems(@page_member.id).search(params[:search], params[:page])
+      @praise = Post.praise(@page_member.id).search(params[:search], params[:page])
+      @allposts = [@qustions, @ideas, @problems, @praise]
     end
 
     respond_to do |format|
