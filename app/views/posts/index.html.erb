@@ -29,6 +29,9 @@
 				    </li>
 				<% end %>
 			    <% end %>
+				<% if @questionposts.empty? %>
+					There are no posts in this category yet.
+				<% end %>
 			</ul>
 			</div>
 			
@@ -45,6 +48,9 @@
 				    </li>
 				<% end %>
 			    <% end %>
+				<% if @ideaposts.empty? %>
+					There are no posts in this category yet.
+				<% end %>
 			</ul>
 			</div>
 			
@@ -61,6 +67,9 @@
 				    </li>
 				<% end %>
 			    <% end %>
+				<% if @problemposts.empty? %>
+					There are no posts in this category yet.
+				<% end %>
 			</ul>
 			</div>
 			
@@ -77,6 +86,9 @@
 				    </li>
 				<% end %>
 			    <% end %>
+				<% if @praiseposts.empty? %>
+					There are no posts in this category yet.
+				<% end %>
 			</ul>
 			</div>
 		</div>
