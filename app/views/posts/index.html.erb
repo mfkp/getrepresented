@@ -3,58 +3,85 @@
 	<% title @page_member.first_name + " " + @page_member.last_name %>
 	<h1><%= @page_member.first_name %> <%= @page_member.last_name %>'s Profile</h1>
 	<%= @page_member.profile %>
-	<h1>Questions</h1>
-	<ul>
-	    <% @questionposts.each do |post| %>
-		<% if post.member_id == @page_member.id %>
-		    <li>
-		        <%= link_to post.title, post %>
-				<% if current_member %>
-					<%= link_to 'Respond', :controller => 'responses', :action => 'new', :id => post.id%>
+	<br/>
+	
+	
+	<img src="img/ajax-loader.gif" width="16" height="16" alt="Loading" class="hidden" />
+
+	<div id="tabs">
+		<ul id="tabs-nav">
+			<li id="tab-1" class="tab active"><a style="width: 108px;" href="?tab=tab-1"><span id="tab-1-loading" class="tab-loading"></span><span class="tab-label">Questions</span></a></li>
+			<li id="tab-2" class="tab"><a style="width: 80px;" href="?tab=tab-2"><span id="tab-2-loading" class="tab-loading"></span><span class="tab-label">Ideas</span></a></li>
+			<li id="tab-3" class="tab"><a style="width: 102px;" href="?tab=tab-3"><span id="tab-3-loading" class="tab-loading"></span><span class="tab-label">Problems</span></a></li>
+			<li id="tab-4" class="tab"><a style="width: 88px;" href="?tab=tab-4"><span id="tab-4-loading" class="tab-loading"></span><span class="tab-label">Praise</span></a></li>
+		</ul>
+		<div id="tabs-content">
+			<div id="questions-content" style="display: <% if @tab == 'tab-1' %>block<% else %>none<% end %>;">
+			<h1>Questions</h1>
+			<ul>
+			    <% @questionposts.each do |post| %>
+				<% if post.member_id == @page_member.id %>
+				    <li>
+				        <%= link_to post.title, post %>
+						<% if current_member %>
+							<%= link_to 'Respond', :controller => 'responses', :action => 'new', :id => post.id%>
+						<% end %>
+				    </li>
 				<% end %>
-		    </li>
-		<% end %>
-	    <% end %>
-	</ul>
-	<h1>Ideas</h1>
-	<ul>
-	    <% @ideaposts.each do |post| %>
-		<% if post.member_id == @page_member.id %>
-		    <li>
-		        <%= link_to post.title, post %>
-				<% if current_member %>
-					<%= link_to 'Respond', :controller => 'responses', :action => 'new', :id => post.id%>
+			    <% end %>
+			</ul>
+			</div>
+			
+			<div id="ideas-content" style="display: <% if @tab == 'tab-2' %>block<% else %>none<% end %>;">
+			<h1>Ideas</h1>
+			<ul>
+			    <% @ideaposts.each do |post| %>
+				<% if post.member_id == @page_member.id %>
+				    <li>
+				        <%= link_to post.title, post %>
+						<% if current_member %>
+							<%= link_to 'Respond', :controller => 'responses', :action => 'new', :id => post.id%>
+						<% end %>
+				    </li>
 				<% end %>
-		    </li>
-		<% end %>
-	    <% end %>
-	</ul>
-	<h1>Problems</h1>
-	<ul>
-	    <% @problemposts.each do |post| %>
-		<% if post.member_id == @page_member.id %>
-		    <li>
-		        <%= link_to post.title, post %>
-				<% if current_member %>
-					<%= link_to 'Respond', :controller => 'responses', :action => 'new', :id => post.id%>
+			    <% end %>
+			</ul>
+			</div>
+			
+			<div id="problems-content" style="display: <% if @tab == 'tab-3' %>block<% else %>none<% end %>;">
+			<h1>Problems</h1>
+			<ul>
+			    <% @problemposts.each do |post| %>
+				<% if post.member_id == @page_member.id %>
+				    <li>
+				        <%= link_to post.title, post %>
+						<% if current_member %>
+							<%= link_to 'Respond', :controller => 'responses', :action => 'new', :id => post.id%>
+						<% end %>
+				    </li>
 				<% end %>
-		    </li>
-		<% end %>
-	    <% end %>
-	</ul>
-	<h1>Praise</h1>
-	<ul>
-	    <% @praiseposts.each do |post| %>
-		<% if post.member_id == @page_member.id %>
-		    <li>
-		        <%= link_to post.title, post %>
-				<% if current_member %>
-					<%= link_to 'Respond', :controller => 'responses', :action => 'new', :id => post.id%>
+			    <% end %>
+			</ul>
+			</div>
+			
+			<div id="praise-content" style="display: <% if @tab == 'tab-4' %>block<% else %>none<% end %>;">
+			<h1>Praise</h1>
+			<ul>
+			    <% @praiseposts.each do |post| %>
+				<% if post.member_id == @page_member.id %>
+				    <li>
+				        <%= link_to post.title, post %>
+						<% if current_member %>
+							<%= link_to 'Respond', :controller => 'responses', :action => 'new', :id => post.id%>
+						<% end %>
+				    </li>
 				<% end %>
-		    </li>
-		<% end %>
-	    <% end %>
-	</ul>
+			    <% end %>
+			</ul>
+			</div>
+		</div>
+	</div>
+	
 <% else %>
 	<% title "Listing Posts" %>
 	<% if current_subdomain != nil && Member.find_by_username(current_subdomain) == nil %>

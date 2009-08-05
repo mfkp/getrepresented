@@ -4,6 +4,8 @@
  	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
 	<title><%= h(yield(:title) || "Untitled") %></title>
 	<%= stylesheet_link_tag 'application' %>
+	<%= javascript_include_tag 'mootools-1.2' %>
+	<%= javascript_include_tag 'tabs' %>
 	<%= yield(:head) %>
 </head> 
 <body> 
