@@ -10,10 +10,10 @@
 
 	<div id="tabs">
 		<ul id="tabs-nav">
-			<li id="tab-1" class="tab active"><a style="width: 108px;" href="?tab=tab-1"><span id="tab-1-loading" class="tab-loading"></span><span class="tab-label">Questions</span></a></li>
-			<li id="tab-2" class="tab"><a style="width: 80px;" href="?tab=tab-2"><span id="tab-2-loading" class="tab-loading"></span><span class="tab-label">Ideas</span></a></li>
-			<li id="tab-3" class="tab"><a style="width: 102px;" href="?tab=tab-3"><span id="tab-3-loading" class="tab-loading"></span><span class="tab-label">Problems</span></a></li>
-			<li id="tab-4" class="tab"><a style="width: 88px;" href="?tab=tab-4"><span id="tab-4-loading" class="tab-loading"></span><span class="tab-label">Praise</span></a></li>
+			<li id="tab-1" class="<% if @tab == 'tab-1' %>tab active<% else %>tab<% end %>"><a style="width: 108px;" href="?tab=tab-1"><span id="tab-1-loading" class="tab-loading"></span><span class="tab-label">Questions</span></a></li>
+			<li id="tab-2" class="<% if @tab == 'tab-2' %>tab active<% else %>tab<% end %>"><a style="width: 80px;" href="?tab=tab-2"><span id="tab-2-loading" class="tab-loading"></span><span class="tab-label">Ideas</span></a></li>
+			<li id="tab-3" class="<% if @tab == 'tab-3' %>tab active<% else %>tab<% end %>"><a style="width: 102px;" href="?tab=tab-3"><span id="tab-3-loading" class="tab-loading"></span><span class="tab-label">Problems</span></a></li>
+			<li id="tab-4" class="<% if @tab == 'tab-4' %>tab active<% else %>tab<% end %>"><a style="width: 88px;" href="?tab=tab-4"><span id="tab-4-loading" class="tab-loading"></span><span class="tab-label">Praise</span></a></li>
 		</ul>
 		<div id="tabs-content">
 			<div id="questions-content" style="display: <% if @tab == 'tab-1' %>block<% else %>none<% end %>;">
