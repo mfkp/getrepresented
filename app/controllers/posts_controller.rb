@@ -154,4 +154,51 @@ class PostsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  # GET /posts/rank/category/weeks
+  # GET /posts/rank/1.xml
+  def rank
+    numWeeks = params[:weeks].to_i
+    type = params[:type]
+    
+    if (type == "popular")
+      @posts = Post.tally(
+      {   :at_least => 1, 
+          :at_most => 10000,  
+          :start_at => numWeeks.weeks.ago,
+          :end_at => 0.day.ago,
+          :limit => 50,
+          :conditions => ["vote = 't'"],
+          :order => "posts.vote asc"
+      })
+    end
+
+    if (type == "unpopular")
+      @posts = Post.tally(
+      {   :at_least => 1, 
+          :at_most => 10000,  
+          :start_at => numWeeks.weeks.ago,
+          :end_at => 0.day.ago,
+          :limit => 50,
+          :conditions => ["vote = 'f'"],
+          :order => "posts.vote asc"
+      })
+    end
+    
+    if (type == "active")
+      @posts = Post.tally(
+      {   :at_least => 1, 
+          :at_most => 10000,  
+          :start_at => numWeeks.weeks.ago,
+          :end_at => 0.day.ago,
+          :limit => 50,
+          :order => "posts.vote asc"
+      })
+    end
+
+    respond_to do |format|
+      format.html #{ redirect_to(@post) }
+      format.xml  { head :ok }
+    end
+  end
 end

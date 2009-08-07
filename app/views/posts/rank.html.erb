@@ -1,0 +1,88 @@
+<% title "Listing Posts" %>
+<% if current_subdomain != nil && Member.find_by_username(current_subdomain) == nil %>
+	<% flash[:error] = 'Invalid subdomain - No match found for "' + current_subdomain + '".' %>
+<% end %>
+<div id="ranking-links">
+	<%= link_to "Most Recent", :controller => 'posts', :action => 'index', :subdomain => 'www' %> | 
+	<%= link_to "Most Active", :controller => 'posts', :action => 'rank', :type => 'active', :weeks => 2, :subdomain => 'www' %> | 
+	<%= link_to "Most Popular", :controller => 'posts', :action => 'rank', :type => 'popular', :weeks => 2, :subdomain => 'www' %> | 
+	<%= link_to "Most Opposed", :controller => 'posts', :action => 'rank', :type => 'unpopular', :weeks => 2, :subdomain => 'www' %>
+</div><br/>
+<table class="content-table">
+    <tr>
+        <th>Votes</th>
+        <th>Title</th>
+        <th>Body</th>
+        <th>Author</th>
+        <th>Actions</th>
+    </tr>
+    <% @posts.each do |post| %>
+    <!-- post <%= post.id %> -->
+    <tr id="item_row<%= post.id %>">
+        <td class="votes">
+            <strong><span class='votes_count' id='votes_count<%= post.id %>'><%= (post.votes_for - post.votes_against).to_s %> votes</span></strong>
+            <% if current_user %>
+				<% if !current_user.voted_for?(post) && !current_user.voted_against?(post) %>
+					<br/>
+		            <div id='vote_buttons<%= post.id %>'>
+		                <div style="height:18px;">
+							<%= link_to '<img alt="I Like This" height="18" src="../../../img/vote-for.gif" width="21" style="border:0px;float:left;" />', url_for(:controller => 'posts', :action => 'vote', :id => post.id, :vote => 'up') %>
+		                	&nbsp;&nbsp;
+							<%= link_to '<img alt="No, Thanks" height="18" src="../../../img/vote-against.gif" width="21" style="border:0px;" />', :controller => 'posts', :action => 'vote', :id => post.id, :vote => 'down' %>
+						</div>
+		            </div>
+				<% end %>
+			<% end %>
+        </td>
+        <td class="title">
+            <%= link_to post.title, post %>
+        </td>
+        <td class="summary">
+            <%=h post.body %>
+        </td>
+        <td class="info">
+            <%= User.find(post.created_by).username %>
+        </td>
+		<td>
+	        <% if post.responses.count > 0 %>
+	            <img alt="Response" height="16" src="../../../img/response.png" width="16" />&nbsp;<a href="javascript:;" onmousedown="displayRow('response<%= post.id %>');">View Response</a><br/>
+	        <% end %>
+			<% if post.comments.count > 0 %>
+				<img alt="Comments" src="../../../img/comments.png" width="16" height="16" />&nbsp;<%= link_to "Comments", post %><br/>
+			<% end %>
+			<% if current_user %>
+		        <% if updatable(post) %>
+		            <img alt="Edit" src="../../../img/edit.png" width="16" height="16" /><%= link_to 'Edit My Post', edit_post_path(post) %>
+		        <% end %>
+		        <% if deletable(post) %>
+		            <br/><img alt="Delete" src="../../../img/delete.png" width="16" height="16" /><%= link_to 'Delete My Post', post , :confirm => 'Are you sure?', :method => :delete %>
+		        <% end %>
+	        <% end %>
+		</td>
+    </tr>
+    <% post.responses.each do |response| %>
+    <!-- response to post <%= post.id %> -->
+    <tr id="response<%= response.post_id %>" style="display:none;">
+        <td class="votes">
+        </td>
+        <td class="title">
+            <a href="#" style="text-align:right;"><%= Member.find(response.member_id).first_name + " " + Member.find(response.member_id).last_name %>'s Response:</a>
+        </td>
+        <td class="summary">
+            <p>
+                <%= h response.response %>
+            </p>
+        </td>
+        <td class="info">
+        </td>
+    </tr>
+    <% end %>
+    <% end %>
+</table>
+<br/>
+
+<% if current_user %>
+<%= link_to 'New post', new_post_path %>
+<% else %>
+<%= link_to 'New post', login_path %>
+<% end %>

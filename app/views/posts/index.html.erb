@@ -335,6 +335,12 @@
 	<% if current_subdomain != nil && Member.find_by_username(current_subdomain) == nil %>
 		<% flash[:error] = 'Invalid subdomain - No match found for "' + current_subdomain + '".' %>
 	<% end %>
+	<div id="ranking-links">
+		<%= link_to "Most Recent", :controller => 'posts', :action => 'index', :subdomain => 'www' %> | 
+		<%= link_to "Most Active", :controller => 'posts', :action => 'rank', :type => 'active', :weeks => 2, :subdomain => 'www' %> | 
+		<%= link_to "Most Popular", :controller => 'posts', :action => 'rank', :type => 'popular', :weeks => 2, :subdomain => 'www' %> | 
+		<%= link_to "Most Opposed", :controller => 'posts', :action => 'rank', :type => 'unpopular', :weeks => 2, :subdomain => 'www' %>
+	</div><br/>
 	<table class="content-table">
 	    <tr>
 	        <th>Votes</th>
