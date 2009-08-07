@@ -29,7 +29,7 @@ function displayRow(rowName){
 						  	<%= link_to "My Profile", :controller => 'users', :action => 'show', :id => 'current', :subdomain => 'www' %>
 							<%= link_to "Categories", :controller => 'categories', :action => 'index', :subdomain => 'www' %>
 							<%= link_to "Congress Members", :controller => 'members', :action => 'index', :subdomain => 'www' %>
-							<%= link_to "Hello, " + current_user.username + "!", :controller => 'posts', :action => 'index', :subdomain => 'www' %>
+							<%= link_to "Hello, " + current_user.username + "!", root_url, :subdomain => 'www' %>
 						<% else %>
 							<%= link_to "Login", login_path %>
 						  	<%= link_to "Register", :controller => 'users', :action => 'new', :subdomain => 'www' %>
