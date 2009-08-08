@@ -11,6 +11,12 @@
     <%= f.password_field :password %>
   </p>
   <p><%= f.submit "Submit" %></p>
+  <h2>Or use OpenID</h2>
+	<p>
+	  <%= f.label :openid_identifier, "OpenID URL" %><br />
+	  <%= f.text_field :openid_identifier %>
+	</p>
+	<p><%= f.submit "Submit" %></p>
   <p>New user? <%= link_to "Register Here!", :new_user %>
 <% end %>
 

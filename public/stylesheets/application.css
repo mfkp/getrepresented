@@ -202,3 +202,15 @@ div.dateline {
 #tab-2 a, #tab-2 a:hover { background: url("../img/idea.png") 10px 4px no-repeat; }
 #tab-3 a, #tab-3 a:hover { background: url("../img/problem.png") 10px 4px no-repeat; }
 #tab-4 a, #tab-4 a:hover { background: url("../img/praise.png") 10px 4px no-repeat; }
+
+/* embeds the openid image in the text field */
+input#user_openid_identifier, input#user_session_openid_identifier {
+  background: url(http://openid.net/images/login-bg.gif) no-repeat;
+  background-color: #fff;
+  background-position: 0 50%;
+  color: #000;
+  padding-left: 18px;
+}
+
+/* required tag, turns asterisk red */
+.required { color: red; font-size:24px;}

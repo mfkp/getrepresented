@@ -1,6 +1,6 @@
 <% form_for @user do |f| %>
   <%= f.error_messages %>
-  <fieldset style="float: left;"><legend>Account Information</legend>
+  <fieldset style="float: left;"><legend>Account Information<span class="required">*</span></legend>
   <p>
     <%= f.label :username %><br />
     <%= f.text_field :username, :class => "validate['required']" %>
@@ -9,6 +9,7 @@
     <%= f.label :email %><br />
     <%= f.text_field :email, :class => "validate['required','email']" %>
   </p>
+  <% if @user.openid_identifier.blank? %><% end %>
   <p>
     <%= f.label :password %><br />
     <%= f.password_field :password, :class => "validate['required']" %>
@@ -18,7 +19,7 @@
     <%= f.password_field :password_confirmation, :class => "validate['required']" %>
   </p>
   </fieldset>
-  <fieldset style="float: left;"><legend>Address</legend>
+  <fieldset style="float: left;"><legend>Address<span class="required">*</span></legend>
   <p>
   	<%= f.label :street_address %><br/>
 	<%= f.text_field :street_address, :class => "validate['required','alphanum']" %>
@@ -36,8 +37,15 @@
 	<%= f.text_field :zip, :class => "validate['required','digit[5-9]']" %>
   </p>
   </fieldset>
+  <fieldset style="float:left;"><legend>OpenID</legend>
+	<p>
+	  <%= f.label :openid_identifier, "OpenID URL (optional)" %><br />
+	  <%= f.text_field :openid_identifier %>
+	</p>
+  </fieldset>
   <div style="clear: both;">&nbsp;</div>
-  <p><%= f.submit "Submit", :value => "Create my Account", :class => "validate['submit']" %></p>
+  <div style="color:red;"><span class="required">*</span> indicates required fields</div>
+  <p><%= f.submit "Submit", :value => "Register", :class => "validate['submit']" %></p>
 <% end %>
 <script type="text/javascript">
     window.addEvent('domready', function(){
