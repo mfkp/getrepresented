@@ -24,33 +24,47 @@ body > #site {height: auto; min-height: 100%;}
 /*navbar
 -----------------------------------------------------------------------------*/
 #navigation{
-	font-family:Georgia, "Times New Roman", Times, serif;
-	background:#061e4a url('../img/bg_nav.jpg') no-repeat center top; 
-	height:55px; 
-	width:100%;
-	overflow:hidden;
-	position:relative;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	background: #061e4a url('../img/bg_nav.jpg') no-repeat center top; 
+	height: 55px; 
+	width: 100%;
+	overflow: hidden;
+	position: relative;
 }
 
 #navigation a{
-	text-decoration:none;
-	float:right;
-	padding:15px;
-	font-size:16px;
-	color:#FFFFFF;
+	text-decoration: none;
+	float: right;
+	padding: 15px;
+	font-size: 16px;
+	color: #FFFFFF;
 }
 
 #navigation a:hover{
-	opacity:.5;
-	padding:15px;
+	opacity: .5;
+	padding: 15px;
 }
 
-#navigation-logo {
-	text-decoration:none;
-	float:left;
-	padding-top:15px;
-	font-size:24px;
-	color:#FFFFFF;
+#nav-logo {
+	text-decoration: none;
+	float: left;
+	padding-top: 15px;
+	font-size: 24px;
+	color: #FFFFFF;
+}
+
+#nav-logo a{
+	text-decoration: none;
+	font-size: 24px;
+	top: 0px;
+	padding: 15px 0 0 0;
+	position: absolute;
+	color: #FFFFFF;
+}
+
+#nav-logo a:hover{
+	opacity: .5;
+	padding: 15px 0 0 0;
 }
 
 /*footer

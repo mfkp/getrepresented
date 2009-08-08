@@ -25,15 +25,14 @@
             <div id="head">
                 <div id="navigation">
                     <div class="container">
-                        <div id="navigation-logo">
-                            <span>My Agenda</span>
+                        <div id="nav-logo">
+                            <%= link_to "My Agenda", root_url, :subdomain => 'www' %>
                         </div>
                         <% if current_user %>
 	                        <%= link_to "Logout", logout_path %>
 	                        <%= link_to "My Profile", :controller => 'users', :action => 'show', :id => 'current', :subdomain => 'www' %>
 							<%= link_to "Categories", :controller => 'categories', :action => 'index', :subdomain => 'www' %>
 							<%= link_to "Congress Members", :controller => 'members', :action => 'index', :subdomain => 'www' %>
-							<%= link_to "Hello, " + current_user.username + "!", root_url, :subdomain => 'www' %>
                         <% else %>
 	                        <%= link_to "Login", login_path %>
 	                        <%= link_to "Register", :controller => 'users', :action => 'new', :subdomain => 'www' %>
