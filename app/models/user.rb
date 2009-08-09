@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :members, :through => :memberships
   
   validates_uniqueness_of :username
-  validates_presence_of :password, :unless => :openid_identifier
+  validates_presence_of :password, :password_confirmation, :unless => :openid_identifier
   validates_size_of :password, :within => 5..100, :unless => :openid_identifier
   validates_format_of :email,
     :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
