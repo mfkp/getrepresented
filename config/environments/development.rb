@@ -27,7 +27,7 @@ config.action_mailer.smtp_settings = {
     :domain => "myagenda.local",
     :authentication => :plain,
     :user_name => "myagenda.org@gmail.com",
-    :password => "***" 
+    :password => "sunlightlabs" 
   }
 
 # set session domain for storing cookies
