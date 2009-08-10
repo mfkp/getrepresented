@@ -20,6 +20,9 @@ class PostsController < ApplicationController
     end
     @page_member = Member.find_by_username(current_subdomain)
     if !@page_member.nil?
+      if !@page_member.active?
+        flash[:error] = "Warning: This member has not yet joined this site. Click here to petition " + @page_member.title + ". " + @page_member.last_name + " to join."
+      end
       @questions = Post.questions(@page_member.id).search(params[:search], params[:page])
       @ideas = Post.ideas(@page_member.id).search(params[:search], params[:page])
       @problems = Post.problems(@page_member.id).search(params[:search], params[:page])
