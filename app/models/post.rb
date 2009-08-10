@@ -38,9 +38,10 @@ class Post < ActiveRecord::Base
     true
   end
   
-  named_scope :questions, lambda { |member| {:conditions => { :type_id => 1, :member_id => member } } }
-  named_scope :ideas, lambda { |member| {:conditions => { :type_id => 2, :member_id => member } } }
-  named_scope :problems, lambda { |member| {:conditions => { :type_id => 3, :member_id => member } } }
-  named_scope :praise, lambda { |member| {:conditions => { :type_id => 4, :member_id => member } } }
+  named_scope :questions, lambda { |member| {:conditions => { :type_id => Type.find_by_name('Question'), :member_id => member } } }
+  named_scope :ideas, lambda { |member| {:conditions => { :type_id => Type.find_by_name('Idea'), :member_id => member } } }
+  named_scope :problems, lambda { |member| {:conditions => { :type_id => Type.find_by_name('Problem'), :member_id => member } } }
+  named_scope :praise, lambda { |member| {:conditions => { :type_id => Type.find_by_name('Praise'), :member_id => member } } }
+  named_scope :petitions, lambda { |member| {:conditions => { :type_id => Type.find_by_name('Petition to Join'), :member_id => member } } }
 
 end

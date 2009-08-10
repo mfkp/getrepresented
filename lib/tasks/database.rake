@@ -48,7 +48,7 @@ namespace :db do
   desc "Populates the type list list with post types"
   task :add_types => :environment do
     puts "Adding types to type list..."
-      typelist = ["Question", "Idea", "Problem", "Praise", "Petition"]
+      typelist = ["Question", "Idea", "Problem", "Praise", "Petition to Join"]
       typelist.each do |type|
         if Type.find(:first, :conditions => {:name => type}) == nil
           puts "Adding type " + type

@@ -21,12 +21,13 @@ class PostsController < ApplicationController
     @page_member = Member.find_by_username(current_subdomain)
     if !@page_member.nil?
       if !@page_member.active?
-        flash[:error] = "Warning: This member has not yet joined this site. Click here to petition " + @page_member.title + ". " + @page_member.last_name + " to join."
+        flash[:error] = "Notice: This member has not yet joined this site. " + "<a href=""#{url_for :controller => 'posts', :action => 'new', :type => Type.find_by_name('Petition to Join').id, :member_id => @page_member.id}"">Click here to petition " + @page_member.title + ". " + @page_member.last_name + " to join.</a>"
       end
       @questions = Post.questions(@page_member.id).search(params[:search], params[:page])
       @ideas = Post.ideas(@page_member.id).search(params[:search], params[:page])
       @problems = Post.problems(@page_member.id).search(params[:search], params[:page])
       @praise = Post.praise(@page_member.id).search(params[:search], params[:page])
+      @petitions = Post.petitions(@page_member.id).search(params[:search], params[:page])
       @allposts = [@qustions, @ideas, @problems, @praise]
     end
 
@@ -54,13 +55,18 @@ class PostsController < ApplicationController
     end
   end
 
-  # GET /posts/new
+  # GET /posts/new/:type
   # GET /posts/new.xml
   def new
     
     @members = []
-    for membership in current_user.memberships
-       @members.push([membership.member.first_name + " " + membership.member.last_name, membership.member.id])
+    if params[:member_id] == nil #if member id not defined in url
+      for membership in current_user.memberships
+         @members.push([membership.member.first_name + " " + membership.member.last_name, membership.member.id]) #add all memberships
+      end
+    else #if member id defined in url
+      member = Member.find(params[:member_id]) #get that member
+      @members.push([member.first_name + " " + member.last_name, member.id]) #select only that member
     end
 
     @allcategories = Category.all
@@ -69,14 +75,24 @@ class PostsController < ApplicationController
       @categories.push([category.name, category.id])
     end
     
-    @alltypes = Type.all
     @types = []
-    for type in @alltypes
-      if type.name != 'Petition' #exclude petition type from new post types
-        @types.push([type.name, type.id])
+    if params[:type] == nil #if post type not defined in url
+      @alltypes = Type.all
+      for type in @alltypes #get all types
+        if type.name != 'Petition to Join' #exclude petition type from new post types
+          @types.push([type.name, type.id])
+        end
+      end
+    else #if post type deinfed in url
+      type = Type.find(params[:type])
+      @types.push([type.name, type.id])
+      if type.name == 'Petition to Join'
+        @petition_mode = true #set the petition mode on form
+      else
+        @petition_mode = false
       end
     end
-
+    
     @post = Post.new
 
     respond_to do |format|

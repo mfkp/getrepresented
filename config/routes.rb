@@ -16,6 +16,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.connect 'members/:id/posts', :controller => 'members', :action => 'posts'
   map.connect 'responses/new/:id', :controller => 'responses', :action => 'new'
+  map.connect 'posts/new/:type/:member_id', :controller => 'posts', :action => 'new'
   map.connect 'posts/vote/:id/:vote', :controller => 'posts', :action => 'vote'
   map.connect 'posts/rank', :controller => 'posts', :action => 'rank'
   map.connect 'posts/rank/:type/:weeks', :controller => 'posts', :action => 'rank'
