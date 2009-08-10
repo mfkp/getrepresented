@@ -29,7 +29,8 @@ class UsersController < ApplicationController
               @rep_id =Member.find_by_sql(["select id from members where first_name=? and last_name=?", @representative.firstname, @representative.lastname])
               @membership = current_user.memberships.build(:member_id => @rep_id[0].id)
               @membership.save
-           end
+          end
+        Mailer.deliver_registration_confirmation(@user)
         flash[:notice] = "Registration Successful."
         redirect_to root_url
       else
