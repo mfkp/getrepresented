@@ -2,4 +2,3 @@ log/*.log
 config/database.yml
 app/views/*/.tmp*
 db/*sqlite3*
-config/environments/development.rb
