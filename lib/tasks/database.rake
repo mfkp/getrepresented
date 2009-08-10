@@ -45,10 +45,10 @@ namespace :db do
     puts "Done!"
   end
   
-  desc "Populates the tag list with categories"
+  desc "Populates the type list list with post types"
   task :add_types => :environment do
     puts "Adding types to type list..."
-      typelist = ["Question", "Idea", "Problem", "Praise"]
+      typelist = ["Question", "Idea", "Problem", "Praise", "Petition"]
       typelist.each do |type|
         if Type.find(:first, :conditions => {:name => type}) == nil
           puts "Adding type " + type
@@ -59,7 +59,7 @@ namespace :db do
     puts "Done!"
   end
   
-  desc "Updates congress members and categories"
+  desc "Updates congress members, categories, and post types"
   task :update_all => [:update_members, :add_categories, :add_types]
 
   def formatString(str)

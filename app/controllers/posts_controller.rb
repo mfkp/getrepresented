@@ -72,7 +72,9 @@ class PostsController < ApplicationController
     @alltypes = Type.all
     @types = []
     for type in @alltypes
-      @types.push([type.name, type.id])
+      if type.name != 'Petition' #exclude petition type from new post types
+        @types.push([type.name, type.id])
+      end
     end
 
     @post = Post.new
