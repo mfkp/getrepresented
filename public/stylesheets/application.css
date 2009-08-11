@@ -195,7 +195,8 @@ div.dateline {
 ----------------------------------------------------------------------------*/
 .hidden { position: absolute; left: 0; top: -500px; }
 
-#tabs { width: 100%; overflow: hidden; background: #EFEFEF; border: 1px solid #DDD; }
+.tabs { width: 100%; overflow: hidden; background: #EFEFEF; border: 1px solid #DDD; }
+
 #tabs-nav { width: 100%; height: 24px; overflow: hidden; padding: 0; margin: 0; list-style: none; background: #DDD; }
 #tabs-nav li { float: left; padding: 0; margin: 0; overflow: hidden;}
 #tabs-nav li a { float: left; display: block; padding: 0; margin: 0; font-size: 12px; text-decoration: none; color: #999; }
@@ -206,7 +207,7 @@ div.dateline {
 #tabs-nav .tab-loading img { border: 0; }
 #tabs-nav .tab-label { display: block; overflow: hidden; padding: 5px 10px 5px 5px; }
 
-#tabs-content { padding: 20px; }
+#tabs-content, #petitions-content { padding: 20px; }
 #tabs-content h2 { margin: 0; }
 #tabs-content p, #tabs-content ul { font-size: 12px; line-height: 18px; }
 #tabs-content p { margin: 10px 0 0 0; }
