@@ -228,3 +228,7 @@ input#user_openid_identifier, input#user_session_openid_identifier {
 
 /* required tag, turns asterisk red */
 .required { color: red; font-size:24px;}
+
+/* petition shaker notification */
+#shaker		{ position:fixed; top:10px; right:10px; border:0px; display:none; }
+#shaker img	{border:0px none;}

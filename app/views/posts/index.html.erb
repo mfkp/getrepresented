@@ -4,7 +4,15 @@
 	<h1><%= @page_member.first_name %> <%= @page_member.last_name %>'s Profile</h1>
 	<%= @page_member.profile %>
 	<br/>
-
+	
+	<% if !@page_member.active? %>
+		<% if current_user %>
+		<div id="shaker">
+			<a href="<%= url_for :controller => 'posts', :action => 'new', :type => Type.find_by_name('Petition to Join').id, :member_id => @page_member.id %>"><img src="/img/clipboard.png" alt="Sign Petition" /></a>
+		</div>
+		<% end %>
+	<% end %>
+	
 	<div id="tabs">
 		<ul id="tabs-nav">
 			<li id="tab-1" class="<% if @tab == 'tab-1' %>tab active<% else %>tab<% end %>"><a style="width: 108px;" href="?tab=tab-1"><span id="tab-1-loading" class="tab-loading"></span><span class="tab-label">Questions</span></a></li>
@@ -394,7 +402,7 @@
 			    <% end %>
 			</table>
 			<br/>
-			<%= will_paginate @questions %>
+			<%= will_paginate @petitions %>
 			<% if current_user %>
 			<%= link_to 'Sign petition!', :controller => 'posts', :action => 'new', :type => Type.find_by_name('Petition to Join').id, :member_id => @page_member.id %>
 			<% else %>

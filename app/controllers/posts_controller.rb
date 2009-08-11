@@ -23,8 +23,6 @@ class PostsController < ApplicationController
       if !@page_member.active?
         if current_user
           flash.now[:error] = "Notice: This member has not yet joined this site. " + "<a href=""#{url_for :controller => 'posts', :action => 'new', :type => Type.find_by_name('Petition to Join').id, :member_id => @page_member.id}"">Click here to ask " + @page_member.title + ". " + @page_member.last_name + " to join.</a>"
-        else
-          flash.now[:error] = "Notice: This member has not yet joined this site. " + "<a href=""#{url_for login_path}"">Click here to ask " + @page_member.title + ". " + @page_member.last_name + " to join.</a>"
         end
       end
       @questions = Post.questions(@page_member.id).search(params[:search], params[:page])
