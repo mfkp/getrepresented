@@ -12,6 +12,7 @@ window.addEvent('domready',function() {
 		x.delay(1000);
 		/* shake */
 		var y = function() { shaker.shake('margin',5,3); };
-		y.periodical(3000);
+		y.delay(3000); /* shake once faded in */
+		y.periodical(15000); /* then shake every 15 seconds */
 	});
 });
