@@ -14,5 +14,8 @@ window.addEvent('domready',function() {
 		var y = function() { shaker.shake('margin',5,3); };
 		y.delay(3000); /* shake once faded in */
 		y.periodical(15000); /* then shake every 15 seconds */
+		/* fade out */
+		var z = function() { shaker.fade('out');};
+		z.delay(35000); /* fade out after 35 seconds */
 	});
 });
