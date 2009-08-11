@@ -26,7 +26,7 @@
                 <div id="navigation">
                     <div class="container">
                         <div id="nav-logo">
-                            <%= link_to "My Agenda", root_url, :subdomain => 'www' %>
+                            <%= link_to "My Agenda", :controller => 'posts', :action => 'index', :subdomain => 'www' %>
                         </div>
                         <% if current_user %>
 	                        <%= link_to "Logout", logout_path %>
