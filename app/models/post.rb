@@ -43,5 +43,6 @@ class Post < ActiveRecord::Base
   named_scope :problems, lambda { |member| {:conditions => { :type_id => Type.find_by_name('Problem'), :member_id => member } } }
   named_scope :praise, lambda { |member| {:conditions => { :type_id => Type.find_by_name('Praise'), :member_id => member } } }
   named_scope :petitions, lambda { |member| {:conditions => { :type_id => Type.find_by_name('Petition to Join'), :member_id => member } } }
+  named_scope :non_petitions, lambda { {:conditions => { :type_id => (Type.find_by_name('Question')) || (Type.find_by_name('Idea')) || (Type.find_by_name('Problem')) || (Type.find_by_name('Praise')) } } }
 
 end

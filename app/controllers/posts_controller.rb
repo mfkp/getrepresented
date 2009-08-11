@@ -12,12 +12,13 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.xml
   def index
-    @posts = Post.search(params[:search], params[:page])
+    @posts = Post.non_petitions().search(params[:search], params[:page])
     if !params[:tab].nil?
       @tab = params[:tab]
     else
       @tab = "tab-1"
     end
+    
     @page_member = Member.find_by_username(current_subdomain)
     if !@page_member.nil?
       if !@page_member.active?
