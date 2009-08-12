@@ -22,16 +22,30 @@ class PostsController < ApplicationController
     @page_member = Member.find_by_username(current_subdomain)
     
     if !@page_member.nil?
-      current_membership = false
-      for membership in current_user.memberships
-        if @page_member.id == membership.member_id
-          #set current_membership to true if the page member is assigned to the user
-          current_membership = true
+      already_petitioned = false
+      if current_user
+        @user_petitions = Post.user_petitions(current_user.id)
+        for petition in @user_petitions
+          if petition.member_id == @page_member.id
+            #set already_petitioned to true if the user has already signed this petition
+            already_petitioned = true
+          end
         end
       end
       
-      #print the petition info if the member hasn't signed up, a user is logged in, and the user is assigned to that member
-      @print_petition = !@page_member.active? && current_user && current_membership
+      current_membership = false
+      if current_user
+        for membership in current_user.memberships
+          if @page_member.id == membership.member_id
+            #set current_membership to true if the page member is assigned to the user
+            current_membership = true
+          end
+        end
+        
+      end
+      
+      #print the petition info if the member hasn't signed up, a user is logged in, the user is assigned to that member, and has not already signed petition
+      @print_petition = !@page_member.active? && current_membership && !already_petitioned
     else
       @print_petition = false
     end
