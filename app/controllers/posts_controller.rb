@@ -41,7 +41,6 @@ class PostsController < ApplicationController
             current_membership = true
           end
         end
-        
       end
       
       #print the petition info if the member hasn't signed up, a user is logged in, the user is assigned to that member, and has not already signed petition
