@@ -20,11 +20,25 @@ class PostsController < ApplicationController
     end
     
     @page_member = Member.find_by_username(current_subdomain)
+    
     if !@page_member.nil?
-      if !@page_member.active?
-        if current_user
-          flash.now[:error] = "Notice: This member has not yet joined this site. " + "<a href=""#{url_for :controller => 'posts', :action => 'new', :type => Type.find_by_name('Petition to Join').id, :member_id => @page_member.id}"">Click here to ask " + @page_member.title + ". " + @page_member.last_name + " to join.</a>"
+      current_membership = false
+      for membership in current_user.memberships
+        if @page_member.id == membership.member_id
+          #set current_membership to true if the page member is assigned to the user
+          current_membership = true
         end
+      end
+      
+      #print the petition info if the member hasn't signed up, a user is logged in, and the user is assigned to that member
+      @print_petition = !@page_member.active? && current_user && current_membership
+    else
+      @print_petition = false
+    end
+    
+    if !@page_member.nil?
+      if @print_petition
+        flash.now[:error] = "Notice: This member has not yet joined this site. " + "<a href=""#{url_for :controller => 'posts', :action => 'new', :type => Type.find_by_name('Petition to Join').id, :member_id => @page_member.id}"">Click here to ask " + @page_member.title + ". " + @page_member.last_name + " to join.</a>"
       end
       @questions = Post.questions(@page_member.id).search(params[:search], params[:page])
       @ideas = Post.ideas(@page_member.id).search(params[:search], params[:page])
