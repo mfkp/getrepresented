@@ -3,8 +3,8 @@
 <% form_for(@post) do |f| %>
   <%= f.error_messages %>
 <% if @petition_mode %>
+  <h3>Title:</h3>
   <p>
-    <%= f.label :title %><br />
     <%= f.text_field :title, :value => "Petition for " + @members[0][0] + " to join" %>
   </p>
   <h3>Which Congress Member?</h3>
@@ -22,10 +22,11 @@
   <%= f.hidden_field :created_by, :value => current_user.id %>
   <p>
     <%= f.submit 'Sign Petition', :class => 'small blue awesome' %>
+	<%= link_to 'Cancel', request.env['HTTP_REFERER'], :class => 'medium blue awesome' %>
   </p>
 <% else %>
+  <h3>Short Description:</h3>
   <p>
-    <%= f.label :title %><br />
     <%= f.text_field :title %>
   </p>
   <h3>Which Congress Member?</h3>
@@ -40,15 +41,14 @@
   <p>
 	<%= f.select :category_id, @categories, {}, :class => 'styled' %>
   </p>
+  <h3>Details:</h3>
   <p>
-    <%= f.label :body %><br />
     <%= f.text_area :body %>
   </p>
   <%= f.hidden_field :created_by, :value => current_user.id %>
   <p>
     <%= f.submit 'Post it!', :class => 'small blue awesome' %>
+	<%= link_to 'Cancel', request.env['HTTP_REFERER'], :class => 'medium blue awesome' %>
   </p>
 <% end %>
 <% end %>
-
-<%= link_to 'Back', posts_path %>
