@@ -233,3 +233,82 @@ input#user_openid_identifier, input#user_session_openid_identifier {
 /* petition shaker notification */
 #shaker		{ position:fixed; top:10px; right:10px; border:0px; display:none; }
 #shaker img	{border:0px none;}
+
+/* custom form elements */
+span.checkbox {
+    width: 19px;
+    height: 25px;
+    padding: 0 5px 0 0;
+    background: url(checkbox.gif) no-repeat;
+    display: block;
+    clear: left;
+    float: left;
+}
+span.radio {
+    width: 19px;
+    height: 25px;
+    padding: 0 5px 0 0;
+    background: url(radio.gif) no-repeat;
+    display: block;
+    clear: left;
+    float: left;
+}
+span.select {
+    position: absolute;
+    width: 158px; /* With the padding included, the width is 190 pixels: the actual width of the image. */
+    height: 21px;
+    padding: 0 24px 0 8px;
+    color: #fff;
+    font: 12px/21px arial,sans-serif;
+    background: url(../img/select.gif) no-repeat;
+    overflow: hidden;
+}
+
+/* awesome buttons */
+.awesome{
+   background: #222 url(/images/alert-overlay.png) repeat-x;
+   display: inline-block;
+   padding: 5px 10px 6px;
+   color: #fff;
+   text-decoration: none;
+   font-weight: bold;
+   line-height: 1;
+   -moz-border-radius: 5px;
+   -webkit-border-radius: 5px;
+   -moz-box-shadow: 0 1px 3px #999;
+   -webkit-box-shadow: 0 1px 3px #999;
+   text-shadow: 0 -1px 1px #222;
+   border-bottom: 1px solid #222;
+   position: relative;
+   cursor: pointer;
+}
+
+/* Sizes ---------- */
+.small.awesome {
+ font-size: 11px;
+}
+.medium.awesome {
+ font-size: 13px;
+}
+.large.awesome {
+ font-size: 14px;
+ padding: 8px 14px 9px;
+}
+ 
+/* Colors ---------- */
+.blue.awesome {
+ background-color: #336699;
+}
+.red.awesome {
+ background-color: #e33100;
+}
+.magenta.awesome {
+ background-color: #a9014b;
+}
+.orange.awesome {
+ background-color: #ff5c00;
+}
+.yellow.awesome {
+ background-color: #ffb515;
+}
+

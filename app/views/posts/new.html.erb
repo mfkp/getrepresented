@@ -9,11 +9,11 @@
   </p>
   <h3>Which Congress Member?</h3>
   <p>
-	<%= select("post", "member_id", @members) %>
+	<%= f.select :member_id, @members, {}, :class => 'styled' %>
   </p>
   <h3>Type of Post</h3>
   <p>
-	<%= select("post", "type_id", @types) %>
+	<%= f.select :type_id, @types, {}, :class => 'styled' %>
   </p>
   <p>
     <%= f.label :body, "Comments" %><br />
@@ -21,7 +21,7 @@
   </p>
   <%= f.hidden_field :created_by, :value => current_user.id %>
   <p>
-    <%= f.submit 'Sign Petition' %>
+    <%= f.submit 'Sign Petition', :class => 'small blue awesome' %>
   </p>
 <% else %>
   <p>
@@ -30,15 +30,15 @@
   </p>
   <h3>Which Congress Member?</h3>
   <p>
-	<%= select("post", "member_id", @members) %>
+	<%= f.select :member_id, @members, {}, :class => 'styled' %>
   </p>
   <h3>Type of Post</h3>
   <p>
-	<%= select("post", "type_id", @types) %>
+	<%= f.select :type_id, @types, {}, :class => 'styled' %>
   </p>
   <h3>Category</h3>
   <p>
-	<%= select("post", "category_id", @categories) %>
+	<%= f.select :category_id, @categories, {}, :class => 'styled' %>
   </p>
   <p>
     <%= f.label :body %><br />
@@ -46,7 +46,7 @@
   </p>
   <%= f.hidden_field :created_by, :value => current_user.id %>
   <p>
-    <%= f.submit 'Create' %>
+    <%= f.submit 'Post it!', :class => 'small blue awesome' %>
   </p>
 <% end %>
 <% end %>

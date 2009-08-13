@@ -2,6 +2,7 @@
 
 <% form_for @user_session do |f| %>
   <%= f.error_messages %>
+  <fieldset style="float: left;"><legend>Username/Password</legend>
   <p>
     <%= f.label :username %><br />
     <%= f.text_field :username %>
@@ -10,14 +11,17 @@
     <%= f.label :password %><br />
     <%= f.password_field :password %>
   </p>
-  <p><%= f.submit "Submit" %></p>
-  <h2>Or use OpenID</h2>
+  <p><%= f.submit "Log In", :class => 'small blue awesome' %></p>
+  </fieldset>
+  <fieldset style="float: left;"><legend>Or Use OpenID</legend>
 	<p>
 	  <%= f.label :openid_identifier, "OpenID URL" %><br />
 	  <%= f.text_field :openid_identifier %>
 	</p>
-	<p><%= f.submit "Submit" %></p>
-  <p>New user? <%= link_to "Register Here!", :new_user %>
+	<p><%= f.submit "Log In", :class => 'small blue awesome' %></p>
+  </fieldset>
+  <div style="clear: both;">&nbsp;</div>
+  <p style="display:block;">New user? <%= link_to "Register Here!", :new_user %>
 <% end %>
 
 
