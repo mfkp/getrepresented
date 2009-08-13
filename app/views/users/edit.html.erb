@@ -1,4 +1,9 @@
 <% title "Edit My Profile" %>
+<ul id="crumbs">
+	<li><%= link_to "Home", :controller => 'posts', :action => 'index', :subdomain => 'www' %></li>
+	<li><%= link_to "My Profile", :controller => 'users', :action => 'show', :id => 'current', :subdomain => 'www' %></li>
+	<li>Edit Profile</li>
+</ul>
 
 <%= render :partial => 'form' %>
 

@@ -1,4 +1,8 @@
 <% title "Congress Members" %>
+<ul id="crumbs">
+	<li><%= link_to "Home", :controller => 'posts', :action => 'index', :subdomain => 'www' %></li>
+	<li>Congress Members</li>
+</ul>
 <% previous_state = "" %>
 <ul>
 	<% @members.each do |member| %>

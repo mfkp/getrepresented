@@ -1,4 +1,8 @@
 <% title "Log In" %>
+<ul id="crumbs">
+	<li><%= link_to "Home", :controller => 'posts', :action => 'index', :subdomain => 'www' %></li>
+	<li>Log In</li>
+</ul>
 
 <% form_for @user_session do |f| %>
   <%= f.error_messages %>

@@ -1,4 +1,8 @@
 <% title "My Profile" %>
+<ul id="crumbs">
+	<li><%= link_to "Home", :controller => 'posts', :action => 'index', :subdomain => 'www' %></li>
+	<li>My Profile</li>
+</ul>
 <p><b>Username:</b> <%= current_user.username %></p>
 <p><b>Email:</b> <%= current_user.email %></p>
 <% if !current_user.openid_identifier.nil? %><p><b>OpenID:</b> <%= current_user.openid_identifier %></p><% end %>

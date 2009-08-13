@@ -1,6 +1,11 @@
 <% if current_subdomain != nil && Member.find_by_username(current_subdomain) != nil %>
 	<% @page_member = Member.find_by_username(current_subdomain) %>
 	<% title @page_member.first_name + " " + @page_member.last_name %>
+	<ul id="crumbs">
+		<li><%= link_to "Home", :controller => 'posts', :action => 'index', :subdomain => 'www' %></li>
+		<li><%= link_to "Congress Members", :controller => 'members', :action => 'index', :subdomain => 'www' %></li>
+		<li><%= @page_member.title + ". " + @page_member.last_name %></li>
+	</ul>
 	<h1><%= @page_member.first_name %> <%= @page_member.last_name %>'s Profile</h1>
 	<%= @page_member.profile %>
 	<br/>
@@ -408,7 +413,10 @@
 	<% end %>
 	
 <% else %>
-	<% title "Listing Posts" %>
+	<% title "Recent Proposals" %>
+	<ul id="crumbs">
+		<li><%= link_to "Home", '#' %></li>
+	</ul>
 	<% if current_subdomain != nil && Member.find_by_username(current_subdomain) == nil %>
 		<% flash[:error] = 'Invalid subdomain - No match found for "' + current_subdomain + '".' %>
 	<% end %>
