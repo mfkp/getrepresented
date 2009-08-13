@@ -26,7 +26,7 @@ How it works
 * Users can vote on any posted items by other users, and sort by popularity and activity
 * Users can comment on any posted items
 * Congress members can respond directly to user feedback
-* ????
+* ???
 * Profit
 
 Licensing
