@@ -1,3 +1,9 @@
+<ul id="crumbs">
+	<li><%= link_to "Home", :controller => 'posts', :action => 'index', :subdomain => 'www' %></li>
+	<li><%= link_to "Categories", :controller => 'categories', :action => 'index', :subdomain => 'www' %></li>
+	<li><%= link_to @category.name, :controller => 'categories', :action => 'show', :id => @category.id %></li>
+	<li><%= @post.title %></li>
+</ul>
 <% if current_user %>
     <% if updatable(@post) %>
         <%= link_to 'Edit My Post', edit_post_path(@post) %> | 
