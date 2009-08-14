@@ -4,13 +4,25 @@
 	<li>Congress Members</li>
 </ul>
 <% previous_state = "" %>
+<p>
+	<% @members.each do |member| %>
+		<% if member.state != previous_state %>
+			<a href="#<%= member.state %>"><%= member.state %></a> | 
+		<% end %>
+		<% previous_state = member.state %>
+	<% end %>
+</p>
+<% previous_state = "" %>
+<div>
 <ul>
 	<% @members.each do |member| %>
 		<% if member.state != previous_state %>
-			</ul><%=h member.state %><ul>
+			</ul></div>
+			<div id="<%= member.state %>"><%=h member.state %><ul>
 		<% end %>
 		<% previous_state = member.state %>
 		<li><%= link_to member.title + " " + member.first_name + " " + member.last_name, 
 			:subdomain => member.username, :controller => 'posts', :action => 'index' %></li>
 	<% end %>
 </ul>
+</div>
