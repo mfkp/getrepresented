@@ -1,13 +1,4 @@
 class PostsController < ApplicationController
-  #require 'sqlite3'
-  #before_filter :has_permission?, :except => :index
-  
-#before_filter :require_user, :only => [:new, :edit, :create, :update, :destroy]
-#  access_control do
-#     allow logged_in
-#     allow anonymous, :to => [:index, :show]
-#  end
-
   
   # GET /posts
   # GET /posts.xml

@@ -1,8 +1,5 @@
 class Post < ActiveRecord::Base
-  #acts_as_authorization_object
-  #acts_as_authorizable
   acts_as_voteable
-  #acts_as_taggable_on :tags
   
   logical_parent :member
   belongs_to :user, :foreign_key => 'created_by', :class_name => 'User'
@@ -19,15 +16,15 @@ class Post < ActiveRecord::Base
   end
   
   def self.is_indexable_by(user, parent = nil)
-#    user.members.include?(parent)
+    #user.members.include?(parent)
   end
 
   def self.is_creatable_by(user, parent = nil)
-#    user.members.include?(parent)
+    #user.members.include?(parent)
   end
 
   def is_updatable_by(user, parent = nil)
-    user.id == created_by #&& parent.is_active?
+    user.id == created_by
   end
 
   def is_deletable_by(user, parent = nil)
