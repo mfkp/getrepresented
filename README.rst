@@ -32,7 +32,7 @@ How it works
 Getting it Running
 ------------------
 * Set up the project in your development environment and create a database.yml file in the config directory (make sure you have a working database)
-* rake:migrate
+* rake db:migrate
 * Run the custom rake tasks defined below (or simply run ``rake db:update_all`` to automate them all).
 * Start your server, and register a new user
 * To make a user an admin, run ``rake db:set_admin[username]`` .
