@@ -61,6 +61,28 @@ namespace :db do
   
   desc "Updates congress members, categories, and post types"
   task :update_all => [:update_members, :add_categories, :add_types]
+  
+  desc "Sets a specific username to have admin status - Pass second parameter of false if admin privleges are to be revoked"
+  task :set_admin, :username, :admin, :needs => :environment do |t, args|  
+    args.with_defaults(:username => nil, :admin => true)
+    if args.username != nil
+      user = User.find_by_username(args.username)
+      if user != nil
+        if args.admin == true
+          puts "Setting user #{args.username} to admin..." 
+          user.is_admin = true
+        else
+          puts "Revoking admin privliges from user #{args.username}..."
+          user.is_admin = false
+        end
+        user.save
+      else
+        puts "Invalid username entered. Usage: rake db:set_admin[username]"
+      end
+    else
+      puts "Invalid username entered. Usage: rake db:set_admin[username]"
+    end
+  end
 
   def formatString(str)
     # Based on permalink_fu by Rick Olsen
