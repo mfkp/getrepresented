@@ -11,20 +11,5 @@
     <%=h @member.profile %>
 </p>
 <% if current_member %>
-	<%= link_to 'Edit', edit_member_path(@member) %> |<%= link_to 'Back', root_url %>
+	<%= link_to 'Edit My Profile', edit_member_path(@member) %>
 <% end %>
-
-<h1>Constituent Posts</h1>
-<ul>
-    <% @posts.each do |post| %>
-	<% if post.member_id == @member.id %>
-	    <li>
-	        <%= h post.title %>
-			<%= link_to 'Read', post %>
-			<% if current_member %>
-				<%= link_to 'Respond', :controller => 'responses', :action => 'new', :id => post.id%>
-			<% end %>
-	    </li>
-	<% end %>
-    <% end %>
-</ul>

@@ -46,7 +46,7 @@ class MembersController < ApplicationController
   # GET /members/1/posts.xml
   def posts
   @member = Member.find(params[:id])
-  @posts = Post.all
+  @posts = Post.non_petitions().search(params[:search], params[:page])
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @member }

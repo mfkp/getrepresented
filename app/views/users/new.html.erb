@@ -4,5 +4,62 @@
 	<li>New User</li>
 </ul>
 
-<%= render :partial => 'form' %>
+<% form_for @user do |f| %>
+  <%= f.error_messages %>
+  
+  <fieldset style="float: left;"><legend>Account Information<span class="required">*</span></legend>
+  <p>
+    <%= f.label :username %><br />
+    <%= f.text_field :username, :class => "validate['required']" %>
+  </p>
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email, :class => "validate['required','email']" %>
+  </p>
+  <% if @user.openid_identifier.blank? %><% end %>
+  <p>
+    <%= f.label :password %><br />
+    <%= f.password_field :password, :class => "validate['required']" %>
+  </p>
+  <p>
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, :class => "validate['required']" %>
+  </p>
+  </fieldset>
+  <fieldset style="float: left;"><legend>Address<span class="required">*</span></legend>
+  <p>
+  	<%= f.label :street_address %><br/>
+	<%= f.text_field :street_address, :class => "validate['required','alphanum']" %>
+  </p>
+  <p>
+  	<%= f.label :city %><br/>
+	<%= f.text_field :city, :class => "validate['required','alpha']" %>
+  </p>
+  <p>
+  	<%= f.label :state %><br/>
+	<%= f.text_field :state, :class => "validate['required','alpha']" %>
+  </p>
+  <p>
+  	<%= f.label :zip %><br/>
+	<%= f.text_field :zip, :class => "validate['required','digit[5-9]']" %>
+  </p>
+  </fieldset>
+  <fieldset style="float:left;"><legend>OpenID</legend>
+	<p>
+	  <%= f.label :openid_identifier, "OpenID URL (optional)" %><br />
+	  <%= f.text_field :openid_identifier %>
+	</p>
+  </fieldset>
+  <div style="clear: both;">&nbsp;</div>
+  <div style="color:red;"><span class="required">*</span> indicates required fields</div>
+  <p>
+  	<%= f.submit "Submit", :value => "Submit", :class => "validate['submit'] small blue awesome" %>
+	<%= link_to 'Cancel', request.env['HTTP_REFERER'], :class => 'medium blue awesome' %>
+  </p>
+<% end %>
+<script type="text/javascript">
+    window.addEvent('domready', function(){
+        new FormCheck('new_user');
+    });
+</script>
 
