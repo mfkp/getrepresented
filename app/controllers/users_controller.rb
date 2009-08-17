@@ -40,11 +40,11 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = current_user
+    @user = User.find(params[:id])
   end
   
   def update
-    @user = current_user
+    @user = User.find(params[:id])
     @user.attributes = params[:user]
     @user.save do |result|
       if result
@@ -55,4 +55,13 @@ class UsersController < ApplicationController
       end
     end
   end
+  
+  def show
+    @page_user = User.find(params[:id])
+  end
+  
+  def manage_users
+    @users = User.all
+  end
+
 end

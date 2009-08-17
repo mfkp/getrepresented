@@ -1,0 +1,11 @@
+<% if current_user.is_admin? %>
+<% title 'Admin Control Panel - Manage Posts' %>
+<ul>
+<% @posts.each do |post| %>
+	<li><%= link_to post.title, :controller => 'posts', :action => 'show', :id => post.id %></li>
+<% end %>
+</ul>
+<% else %>
+<% title 'Access Denied' %>
+You do not have permission to view this page.
+<% end %>

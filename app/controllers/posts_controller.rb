@@ -243,4 +243,8 @@ class PostsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def manage_posts
+    @posts = Post.all
+  end
 end

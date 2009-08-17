@@ -1,5 +1,12 @@
 <% form_for @user do |f| %>
   <%= f.error_messages %>
+  <% if current_user? %>
+	  <% if current_user.is_admin? %>
+	  	<p>
+	  		<%= f.label :is_admin %><%= f.check_box :is_admin %>
+	  	</p>
+	  <% end %>
+  <% end %>
   <fieldset style="float: left;"><legend>Account Information<span class="required">*</span></legend>
   <p>
     <%= f.label :username %><br />

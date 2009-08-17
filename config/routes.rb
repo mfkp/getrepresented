@@ -1,7 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :memberships
 
-
   map.login "login", :controller => "user_sessions", :action => "new", :subdomain => false
   map.logout "logout", :controller => "user_sessions", :action => "destroy", :subdomain => false
   map.memberlogin "memberlogin", :controller => "member_sessions", :action => "new", :subdomain => false
@@ -14,6 +13,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :responses
   map.resources :posts, :has_many=>:comments
   
+  map.connect 'users/:id', :controller => 'users', :action => 'show'
+  map.connect 'users/:id/edit', :controller => 'users', :action => 'edit'
   map.connect 'members/:id/posts', :controller => 'members', :action => 'posts'
   map.connect 'responses/new/:id', :controller => 'responses', :action => 'new'
   map.connect 'posts/new/:type/:member_id', :controller => 'posts', :action => 'new'
@@ -23,6 +24,10 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'categories', :controller => 'categories', :action => 'index'
   map.connect 'categories/:id', :controller => 'categories', :action => 'show'
   map.connect 'types/:id', :controller => 'types', :action => 'show'
+  map.connect 'admin', :controller => 'users', :action => 'admin'
+  map.connect 'admin/users', :controller => 'users', :action => 'manage_users'
+  map.connect 'admin/posts', :controller => 'posts', :action => 'manage_posts'
+  map.connect 'admin/members', :controller => 'members', :action => 'manage_members'
   
   map.root :controller => 'posts'
 

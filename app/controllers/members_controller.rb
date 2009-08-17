@@ -25,7 +25,7 @@ class MembersController < ApplicationController
     @member = Member.find(params[:id])
     if @member.update_attributes(params[:member])
       flash[:notice] = "Successfully updated member."
-      redirect_to root_url
+      redirect_to @member
     else
       render :action => 'edit'
     end
@@ -52,6 +52,8 @@ class MembersController < ApplicationController
       format.xml  { render :xml => @member }
     end
   end
+  
+  def manage_members
+    @members = Member.all
+  end
 end
-
-

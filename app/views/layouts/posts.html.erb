@@ -31,7 +31,7 @@ function displayRow(rowName){
                     </div>
 						<% if current_user %>
 							<%= link_to "Logout", logout_path %>
-						  	<%= link_to "My Profile", :controller => 'users', :action => 'show', :id => 'current', :subdomain => 'www' %>
+						  	<%= link_to "My Profile", :controller => 'users', :action => 'show', :id => current_user.id, :subdomain => 'www' %>
 							<%= link_to "Categories", :controller => 'categories', :action => 'index', :subdomain => 'www' %>
 							<%= link_to "Congress Members", :controller => 'members', :action => 'index', :subdomain => 'www' %>
 						<% else %>
@@ -61,7 +61,7 @@ function displayRow(rowName){
 				alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></span>
 			<% if current_user %>
             <%= link_to "Logout", logout_path %>
-            <%= link_to "My Profile", :controller => 'users', :action => 'show', :id => 'current', :subdomain => 'www' %>
+            <%= link_to "My Profile", :controller => 'users', :action => 'show', :id => current_user.id, :subdomain => 'www' %>
 			<%= link_to "Categories", :controller => 'categories', :action => 'index', :subdomain => 'www' %>
 			<%= link_to "Congress Members", :controller => 'members', :action => 'index', :subdomain => 'www' %>
             <% else %>
