@@ -1,10 +1,13 @@
 <% if current_user.is_admin? %>
-<% title 'Admin Control Panel - Manage Congress Members' %>
-<ul>
+<% title 'Admin - Manage Congress Members' %>
+<table>
 <% @members.each do |member| %>
-	<li><%= link_to member.title + '. ' + member.first_name + " " + member.last_name, :controller => 'members', :action => 'edit', :id => member.id %></li>
+	<tr>
+		<td><%= link_to member.title + '. ' + member.first_name + " " + member.last_name, :controller => 'members', :action => 'show', :id => member.id %></td>
+		<td><%= link_to 'Edit', :controller => 'members', :id => member.id, :action => 'edit' %></td>
+	</tr>
 <% end %>
-</ul>
+</table>
 <% else %>
 <% title 'Access Denied' %>
 You do not have permission to view this page.
