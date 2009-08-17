@@ -1,12 +1,14 @@
+<% if current_user %>
+<% if (current_user.id == params[:id].to_i) || current_user.is_admin? %>
 <% form_for @user do |f| %>
   <%= f.error_messages %>
-  <% if current_user %>
-	  <% if current_user.is_admin? %>
-	  	<p>
-	  		<%= f.label :is_admin %><%= f.check_box :is_admin %>
-	  	</p>
-	  <% end %>
+  
+  <% if current_user.is_admin? %>
+  	<p>
+  		<%= f.label :is_admin %><%= f.check_box :is_admin %>
+  	</p>
   <% end %>
+  
   <fieldset style="float: left;"><legend>Account Information<span class="required">*</span></legend>
   <p>
     <%= f.label :username %><br />
@@ -62,3 +64,7 @@
         new FormCheck('new_user');
     });
 </script>
+<% else %>
+You are not authorized to edit this user's profile.
+<% end %>
+<% end %>
