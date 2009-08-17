@@ -1,3 +1,4 @@
+<% title @member.title + ". " + @member.last_name %>
 <p>
     <b>Name:</b>
     <%=h @member.first_name %> <%=h @member.last_name %>
@@ -11,5 +12,8 @@
     <%=h @member.profile %>
 </p>
 <% if current_member %>
-	<%= link_to 'Edit My Profile', edit_member_path(@member) %>
+<% if current_member.id == @member.id %>
+	<%= link_to 'Edit My Profile', edit_member_path(@member) %><br/>
+	<%= link_to 'View My Public Profile', :controller => 'posts', :action => 'index', :subdomain => @member.first_name + @member.last_name %>
+<% end %>
 <% end %>

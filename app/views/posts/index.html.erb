@@ -7,8 +7,7 @@
 		<li><%= @page_member.title + ". " + @page_member.last_name %></li>
 	</ul>
 	<h1><%= @page_member.first_name %> <%= @page_member.last_name %>'s Profile</h1>
-	<%= @page_member.profile %>
-	<br/>
+	<p><%= @page_member.profile %></p>
 	
 	<% if @print_petition %>
 		<div id="shaker">

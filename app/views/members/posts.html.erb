@@ -6,7 +6,11 @@
 	    <tr>
 	        <td><%= h post.title %></td>
 			<td><%= link_to 'Read', post %></td>
+			<% if current_member %>
+			<% if current_member.id == @member.id %>
 			<td><%= link_to 'Respond', :controller => 'responses', :action => 'new', :id => post.id %></td>
+			<% end %>
+			<% end %>
 	    </tr>
 	<% end %>
     <% end %>
