@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 gem 'rails'
+source 'http://rubygems.org'
 gem 'thumbs_up'
-
 source 'http://gems.github.com'
 gem 'authlogic'
 gem 'authlogic-oid', :require => 'authlogic_openid'
