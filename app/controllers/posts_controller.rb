@@ -10,7 +10,7 @@ class PostsController < ApplicationController
       @tab = "tab-1"
     end
     
-    @page_member = Member.find_by_username(current_subdomain)
+    @page_member = Member.find_by_username(request.subdomain)
     
     if !@page_member.nil?
       already_petitioned = false

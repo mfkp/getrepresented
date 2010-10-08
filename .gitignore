@@ -4,3 +4,4 @@ app/views/*/.tmp*
 db/*sqlite3*
 Capfile
 config/deploy.rb
+config/deploy.rb.bak
