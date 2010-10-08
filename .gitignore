@@ -2,3 +2,5 @@ log/*.log
 config/database.yml
 app/views/*/.tmp*
 db/*sqlite3*
+Capfile
+config/deploy.rb
