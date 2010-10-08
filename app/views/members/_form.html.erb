@@ -1,6 +1,6 @@
 <% if current_member %>
 <% if (current_member.id == params[:id].to_i) %>
-	<% form_for @member do |f| %>
+	<%= form_for @member do |f| %>
 	  <%= f.error_messages %>
 	  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>" />
 	  <p>
@@ -39,7 +39,7 @@
 <% end %>
 <% elsif current_user %>
 <% if current_user.is_admin? %>
-	<% form_for @member do |f| %>
+	<%= form_for @member do |f| %>
 	  <%= f.error_messages %>
 	  <% if current_user.is_admin? %>
 	  	<p>

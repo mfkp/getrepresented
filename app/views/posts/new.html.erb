@@ -1,6 +1,6 @@
 <% title "New Post" %>
 
-<% form_for(@post) do |f| %>
+<%= form_for(@post) do |f| %>
   <%= f.error_messages %>
 <% if @petition_mode %>
 <ul id="crumbs">

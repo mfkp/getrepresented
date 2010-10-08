@@ -19,20 +19,6 @@ Rails::Initializer.run do |config|
   # Skip frameworks you're not going to use. To use Rails without a database
   # you must remove the Active Record framework.
   # config.frameworks -= [ :active_record, :active_resource, :action_mailer ]
-
-  # Specify gems that this application depends on. 
-  # They can then be installed with "rake gems:install" on new installations.s
-  config.gem 'mbleigh-subdomain-fu', :source => "http://gems.github.com", :lib => "subdomain-fu"
-  config.gem 'authlogic'
-  config.gem "authlogic-oid", :lib => "authlogic_openid"
-  config.gem "ruby-openid", :lib => "openid"
-  config.gem "mdarby-restful_acl", :lib => 'restful_acl_controller', :source => "http://gems.github.com"
-  config.gem "peteonrails-vote_fu", :source => "http://gems.github.com", :lib => "vote_fu"
-  config.gem "json"
-  config.gem "ym4r"
-  config.gem "sunlight"
-  config.gem "geokit"
-  config.gem 'mislav-will_paginate', :version => '~> 2.3.11', :lib => 'will_paginate', :source => 'http://gems.github.com'
   
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.

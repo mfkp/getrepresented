@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
-    @categoryposts = Post.find(:all, :conditions => { :category_id => params[:id] } )
+    @categoryposts = Post.where(:category_id => params[:id])
   end
 
 end

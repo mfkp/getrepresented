@@ -1,6 +1,6 @@
 <% if current_user %>
 <% if (current_user.id == params[:id].to_i) || current_user.is_admin? %>
-<% form_for @user do |f| %>
+<%= form_for @user do |f| %>
   <%= f.error_messages %>
   
   <% if current_user.is_admin? %>

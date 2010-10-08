@@ -30,7 +30,7 @@ class UsersController < ApplicationController
               @membership = current_user.memberships.build(:member_id => @rep_id[0].id)
               @membership.save
           end
-        Mailer.deliver_registration_confirmation(@user)
+        Mailer.registration_notification(@user).deliver
         flash[:notice] = "Registration Successful."
         redirect_to root_url
       else

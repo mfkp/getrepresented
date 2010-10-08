@@ -69,7 +69,7 @@
 
 <!-- if logged in, show the comment form -->
 <% if current_user %>
-	<% form_for(:comment, :url => post_comments_path(@post)) do |f| %>
+	<%= form_for(:comment, :url => post_comments_path(@post)) do |f| %>
 		<p>
 		    Comment:<br/>
 		    <%= f.text_area :comment %>

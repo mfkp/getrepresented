@@ -1,8 +1,9 @@
 class Mailer < ActionMailer::Base
-  def registration_confirmation(user)
-    recipients  user.email
-    from        "myagenda.org@gmail.com"
-    subject     "Thank you for Registering at MyAgenda.org"
-    body        :user => user
+  default :from => "myagenda.org@gmail.com"
+  
+  def registration_notification(user)
+    mail(:to => user.email,
+         :subject => "Thank you for Registering at MyAgenda.org",
+         :body => user)
   end
 end
